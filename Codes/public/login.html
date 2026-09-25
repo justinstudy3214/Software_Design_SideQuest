@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Log in to Sidequest</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='5' y='5' width='22' height='22' rx='4' transform='rotate(45 16 16)' fill='%2315173B'/%3E%3Ccircle cx='16' cy='16' r='4.5' fill='%23F2F3FA'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F2F3FA;
+    --ink: #15173B;
+    --ink-2: #4A4D75;
+    --signal: #3341F0;
+    --signal-dark: #2531C9;
+    --error: #B3261E;
+    --white: #FFFFFF;
+    --display: "Bricolage Grotesque", "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+    --body: "Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; background: var(--paper); color: var(--ink); font-family: var(--body); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  h1, h2 { font-family: var(--display); margin: 0; letter-spacing: -0.03em; }
+  p { margin: 0; }
+  button, input { font: inherit; color: inherit; }
+  :focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; }
+
+  .page { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); min-height: 100vh; }
+
+  /* ---------- Form side ---------- */
+  .form-side { display: flex; flex-direction: column; justify-content: center; padding: clamp(1.5rem, 5vw, 4rem); }
+  .form-box { width: min(420px, 100%); margin-inline: auto; }
+  .logo { display: inline-flex; align-items: center; gap: .55rem; font-family: var(--display); font-weight: 800; font-size: 1.5rem; letter-spacing: -0.03em; margin-bottom: 2rem; }
+  .logo svg { width: 28px; height: 28px; }
+
+  .modes { display: grid; grid-template-columns: 1fr 1fr; border: 1.5px solid var(--ink); border-radius: 999px; padding: 3px; margin-bottom: 1.75rem; background: var(--white); }
+  .mode { border: 0; background: transparent; padding: .55rem 1rem; border-radius: 999px; font-weight: 600; cursor: pointer; }
+  .mode[aria-pressed="true"] { background: var(--ink); color: var(--white); }
+  .mode:not([aria-pressed="true"]):hover { background: #E4E6F8; }
+
+  h1 { font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 800; line-height: 1; }
+  .lead { margin-top: .75rem; color: var(--ink-2); }
+  form { margin-top: 1.75rem; }
+  .field { margin-bottom: 1.1rem; }
+  label { display: block; font-weight: 600; margin-bottom: .35rem; }
+  .input { width: 100%; padding: .75rem 1rem; border: 1.5px solid var(--ink); border-radius: 8px; background: var(--white); }
+  .input:focus-visible { outline-offset: 2px; }
+  .input[aria-invalid="true"] { border-color: var(--error); }
+  .hint { margin-top: .35rem; font-size: .9rem; color: var(--ink-2); }
+  .pw-wrap { position: relative; }
+  .pw-wrap .input { padding-right: 5rem; }
+  .pw-toggle { position: absolute; top: 50%; right: .5rem; transform: translateY(-50%); background: none; border: 0; padding: .35rem .6rem; border-radius: 6px; font-weight: 600; color: var(--ink-2); cursor: pointer; }
+  .pw-toggle:hover { color: var(--ink); background: #E4E6F8; }
+
+  .row { display: flex; align-items: center; gap: .6rem; margin-bottom: 1.4rem; }
+  .row input { width: 18px; height: 18px; accent-color: var(--ink); margin: 0; }
+  .row label { margin: 0; font-weight: 500; }
+
+  .error { display: none; margin-bottom: 1rem; padding: .7rem 1rem; border-left: 4px solid var(--error); background: #FCE8E6; color: #6B1610; border-radius: 4px; }
+  .error.show { display: block; }
+
+  .submit { width: 100%; padding: .85rem 1rem; border-radius: 999px; cursor: pointer; border: 1.5px solid var(--signal); background: var(--signal); color: var(--white); font-weight: 600; transition: background .15s; }
+  .submit:hover:not(:disabled) { background: var(--signal-dark); border-color: var(--signal-dark); }
+  .submit:disabled { opacity: .65; cursor: not-allowed; }
+  .switch { margin-top: 1.5rem; color: var(--ink-2); }
+  .switch button { background: none; border: 0; padding: 0; font-weight: 600; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+
+  /* ---------- Art side ---------- */
+  .art-side { background: var(--ink); color: var(--white); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 3rem 2rem; gap: 2.5rem; overflow: hidden; }
+  .stack { position: relative; width: 360px; height: 380px; max-width: 100%; }
+  .card { position: absolute; width: 185px; aspect-ratio: 3 / 4; border-radius: 6px; overflow: hidden; box-shadow: 5px 5px 0 rgba(0, 0, 0, .45); }
+  .card svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .card::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(to top, rgba(10, 11, 35, .75), rgba(10, 11, 35, 0) 58%); }
+  .card::after { content: ""; position: absolute; inset: 0; z-index: 1; box-shadow: inset 9px 0 0 rgba(0, 0, 0, .18), inset 10px 0 0 rgba(255, 255, 255, .16); }
+  .card span { position: absolute; z-index: 2; left: 18px; bottom: 14px; font-family: var(--display); font-weight: 800; font-size: 1.3rem; letter-spacing: -0.02em; }
+  .c1 { left: 70px; top: 30px; z-index: 3; transform: rotate(-3deg); }
+  .c2 { left: 170px; top: 0; z-index: 2; transform: rotate(7deg); }
+  .c3 { left: 0; top: 60px; z-index: 1; transform: rotate(-11deg); }
+  .art-copy { text-align: center; max-width: 34ch; }
+  .art-copy h2 { font-size: 1.9rem; font-weight: 800; line-height: 1.05; }
+  .art-copy p { margin-top: .6rem; color: #B9BCE3; }
+
+  @media (max-width: 860px) { .page { grid-template-columns: 1fr; } .art-side { display: none; } }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <main class="form-side">
+    <div class="form-box">
+      <div class="logo">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="5" width="22" height="22" rx="4" transform="rotate(45 16 16)" fill="#15173B"/><circle cx="16" cy="16" r="4.5" fill="#F2F3FA"/></svg>
+        Sidequest
+      </div>
+
+      <div class="modes" role="group" aria-label="Log in or create an account">
+        <button class="mode" type="button" data-mode="login" aria-pressed="true">Log in</button>
+        <button class="mode" type="button" data-mode="signup" aria-pressed="false">Create account</button>
+      </div>
+
+      <h1 id="title">Welcome back</h1>
+      <p class="lead" id="lead">Log in to see today's picks.</p>
+
+      <form id="authForm" novalidate>
+        <div class="field" id="nameField" hidden>
+          <label for="name">Your name</label>
+          <input class="input" id="name" name="name" type="text" autocomplete="name" maxlength="60">
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input class="input" id="email" name="email" type="email" autocomplete="username" placeholder="you@example.com" required>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="pw-wrap">
+            <input class="input" id="password" name="password" type="password" autocomplete="current-password" required aria-describedby="pwHint">
+            <button class="pw-toggle" id="pwToggle" type="button" aria-controls="password" aria-pressed="false">Show</button>
+          </div>
+          <p class="hint" id="pwHint" hidden>Use at least 8 characters.</p>
+        </div>
+
+        <div class="row">
+          <input type="checkbox" id="remember" checked>
+          <label for="remember">Keep me logged in on this device</label>
+        </div>
+
+        <p class="error" id="error" role="alert"></p>
+
+        <button class="submit" id="submitBtn" type="submit">Log in</button>
+      </form>
+
+      <p class="switch" id="switchLine">New here? <button type="button" data-mode="signup">Create an account</button></p>
+    </div>
+  </main>
+
+  <aside class="art-side" aria-hidden="true">
+    <div class="stack">
+      <div class="card c3">
+        <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice"><rect width="300" height="400" fill="#C97B0B"/><circle cx="200" cy="120" r="125" fill="#654006" opacity=".55"/><circle cx="200" cy="120" r="28" fill="none" stroke="#F4D9A6" stroke-width="10" opacity=".4"/><circle cx="200" cy="120" r="56" fill="none" stroke="#F4D9A6" stroke-width="10" opacity=".4"/><circle cx="200" cy="120" r="84" fill="none" stroke="#F4D9A6" stroke-width="10" opacity=".4"/><circle cx="200" cy="120" r="22" fill="#F4D9A6"/></svg>
+        <span>Adventure</span>
+      </div>
+      <div class="card c2">
+        <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice"><rect width="300" height="400" fill="#C2338F"/><rect x="20" y="20" width="100" height="90" fill="#E9A6D2" opacity=".42"/><rect x="150" y="60" width="110" height="100" fill="#6B47E8" opacity=".9"/><rect x="60" y="150" width="90" height="100" fill="#5C1743" opacity=".42"/><rect x="190" y="190" width="100" height="70" fill="#E9A6D2" opacity=".42"/></svg>
+        <span>Puzzle</span>
+      </div>
+      <div class="card c1">
+        <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice"><rect width="300" height="400" fill="#E03E2F"/><polygon points="0,400 0,120 260,400" fill="#862519" opacity=".6"/><polygon points="300,0 300,210 110,0" fill="#8C2F39" opacity=".85"/><polygon points="300,400 300,250 190,400" fill="#F5B8B1" opacity=".45"/></svg>
+        <span>Action</span>
+      </div>
+    </div>
+    <div class="art-copy">
+      <h2>Your daily feed is waiting.</h2>
+      <p>Every genre, one place, picked around what you like to play.</p>
+    </div>
+  </aside>
+
+</div>
+
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const form = $('authForm'), nameEl = $('name'), emailEl = $('email'), pwEl = $('password');
+  const errorEl = $('error'), submitBtn = $('submitBtn');
+  let mode = 'login';
+  let busy = false;
+
+  function setMode(next) {
+    mode = next;
+    const signup = mode === 'signup';
+    document.querySelectorAll('.mode').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mode === mode)));
+    $('title').textContent = signup ? 'Create your account' : 'Welcome back';
+    $('lead').textContent = signup ? 'Save your genres, likes and favorites to your own account.' : 'Log in to see today\u2019s picks.';
+    $('nameField').hidden = !signup;
+    $('pwHint').hidden = !signup;
+    pwEl.setAttribute('autocomplete', signup ? 'new-password' : 'current-password');
+    submitBtn.textContent = signup ? 'Create account' : 'Log in';
+    $('switchLine').innerHTML = signup
+      ? 'Already have an account? <button type="button" data-mode="login">Log in</button>'
+      : 'New here? <button type="button" data-mode="signup">Create an account</button>';
+    clearError();
+    history.replaceState(null, '', signup ? '?mode=signup' : location.pathname);
+  }
+
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-mode]');
+    if (b && b.dataset.mode !== mode) { setMode(b.dataset.mode); (mode === 'signup' ? nameEl : emailEl).focus(); }
+  });
+
+  function clearError() {
+    errorEl.classList.remove('show');
+    [nameEl, emailEl, pwEl].forEach(el => el.removeAttribute('aria-invalid'));
+  }
+  function showError(msg, field) {
+    errorEl.textContent = msg;
+    errorEl.classList.add('show');
+    [nameEl, emailEl, pwEl].forEach(el => el.removeAttribute('aria-invalid'));
+    if (field) { field.setAttribute('aria-invalid', 'true'); field.focus(); }
+  }
+
+  $('pwToggle').addEventListener('click', e => {
+    const showing = pwEl.type === 'text';
+    pwEl.type = showing ? 'password' : 'text';
+    e.currentTarget.textContent = showing ? 'Show' : 'Hide';
+    e.currentTarget.setAttribute('aria-pressed', String(!showing));
+  });
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (busy) return;
+    clearError();
+
+    const name = nameEl.value.trim();
+    const email = emailEl.value.trim();
+    const password = pwEl.value;
+
+    if (mode === 'signup' && !name) return showError('Enter your name.', nameEl);
+    if (!email) return showError('Enter your email address.', emailEl);
+    if (!/^\S+@\S+\.\S+$/.test(email)) return showError('That email address doesn\u2019t look right. Check it and try again.', emailEl);
+    if (!password) return showError('Enter your password.', pwEl);
+    if (mode === 'signup' && password.length < 8) return showError('Choose a password with at least 8 characters.', pwEl);
+
+    const payload = { email, password, remember: $('remember').checked };
+    if (mode === 'signup') payload.name = name;
+
+    busy = true;
+    submitBtn.disabled = true;
+    const label = submitBtn.textContent;
+    submitBtn.textContent = mode === 'signup' ? 'Creating account\u2026' : 'Logging in\u2026';
+
+    try {
+      const res = await fetch(mode === 'signup' ? '/api/signup' : '/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'same-origin',
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        pwEl.value = res.status === 401 ? '' : pwEl.value;
+        const field = res.status === 409 ? emailEl : (res.status === 401 ? pwEl : null);
+        showError(data.error || 'Something went wrong. Try again.', field);
+        return;
+      }
+      location.replace('/');
+    } catch (err) {
+      showError('Can\u2019t reach the server. Make sure it is running (python server.py) and try again.');
+    } finally {
+      busy = false;
+      submitBtn.disabled = false;
+      submitBtn.textContent = label;
+    }
+  });
+
+  if (new URLSearchParams(location.search).get('mode') === 'signup') setMode('signup');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1299 @@
+[
+  {
+    "id": "hades",
+    "title": "Hades",
+    "genres": [
+      "Action",
+      "RPG",
+      "Roguelite"
+    ],
+    "year": 2020,
+    "price": "Paid",
+    "trend": 82,
+    "how": "You fight your way out of the Underworld one room at a time, picking a power-up from the gods after each battle. When you die, you return to your home base and try again a little stronger.",
+    "mechanics": "Fast dash-and-strike combat, six weapons, randomized upgrades during each run, and permanent unlocks between runs.",
+    "objective": "Escape the Underworld and find out why your family keeps pulling you back.",
+    "style": "Hand-painted, stylish and voice-acted, with a story that moves forward with every attempt."
+  },
+  {
+    "id": "eldenring",
+    "title": "Elden Ring",
+    "genres": [
+      "Action",
+      "RPG",
+      "Adventure",
+      "Souls-like",
+      "Open World"
+    ],
+    "year": 2022,
+    "price": "Paid",
+    "trend": 90,
+    "how": "You explore a huge open world on foot and horseback, choosing where to go and which bosses to face. Fights are tough and reward patience and timing.",
+    "mechanics": "Stamina-based melee and magic combat, a deep build system, and summonable helpers and spirits.",
+    "objective": "Gather the shards of a broken power and become the ruler of the Lands Between.",
+    "style": "Dark fantasy with sweeping landscapes and very little hand-holding."
+  },
+  {
+    "id": "celeste",
+    "title": "Celeste",
+    "genres": [
+      "Platformer",
+      "Adventure",
+      "2D Platformer"
+    ],
+    "year": 2018,
+    "price": "Paid",
+    "trend": 66,
+    "how": "You guide Madeline up a mountain through short, hand-built screens that each ask you to solve a jumping puzzle. Failing is quick and restarting is instant.",
+    "mechanics": "Jump, wall-climb and one air dash, with tight controls and optional assist settings to tune the difficulty.",
+    "objective": "Reach the summit of Celeste Mountain while facing your own doubts.",
+    "style": "Colorful pixel art, a moving soundtrack, and a warm, personal story."
+  },
+  {
+    "id": "hollowknight",
+    "title": "Hollow Knight",
+    "genres": [
+      "Action",
+      "Adventure",
+      "Platformer",
+      "Metroidvania"
+    ],
+    "year": 2017,
+    "price": "Paid",
+    "trend": 74,
+    "how": "You explore a sprawling underground insect kingdom, unlocking new abilities that open up areas you couldn't reach before. Battles are precise and bosses are memorable.",
+    "mechanics": "Nail-swing combat, healing by focus, equippable charms, and a map you have to earn and fill in.",
+    "objective": "Descend into Hallownest and uncover the source of the infection that ruined it.",
+    "style": "Moody hand-drawn art and a quiet, mysterious tone.",
+    "image_url": "/uploads/53b8690e097f4c14a5a81e69c3b86088.jpg"
+  },
+  {
+    "id": "bg3",
+    "title": "Baldur's Gate 3",
+    "genres": [
+      "RPG",
+      "Strategy",
+      "Turn-Based Strategy"
+    ],
+    "year": 2023,
+    "price": "Paid",
+    "trend": 92,
+    "how": "You lead a party of companions through a story where your choices change who lives, who helps you and how scenes play out. Combat happens in turns on a grid.",
+    "mechanics": "Dungeons & Dragons rules with dice rolls, spells, terrain and positioning, plus co-op for up to four players.",
+    "objective": "Get rid of the parasite in your head and decide what to do with the power it gives you.",
+    "style": "Cinematic, funny and dramatic, with an enormous amount of branching dialogue."
+  },
+  {
+    "id": "stardew",
+    "title": "Stardew Valley",
+    "genres": [
+      "Simulation",
+      "RPG"
+    ],
+    "year": 2016,
+    "price": "Paid",
+    "trend": 78,
+    "how": "You take over a run-down family farm and build a new life: planting crops, raising animals, mining, fishing and getting to know the townspeople.",
+    "mechanics": "A day-and-season calendar, energy management, crafting, relationships and a light combat system in the mines.",
+    "objective": "Restore the farm and the community at your own pace. There is no timer and no single way to win.",
+    "style": "Cozy pixel art and relaxed music that makes it easy to play one more day."
+  },
+  {
+    "id": "civ6",
+    "title": "Sid Meier's Civilization VI",
+    "genres": [
+      "Strategy",
+      "Turn-Based Strategy"
+    ],
+    "year": 2016,
+    "price": "Paid",
+    "trend": 58,
+    "how": "You lead a civilization from the ancient era to the modern world, taking turns to found cities, research technology and deal with rival leaders.",
+    "mechanics": "Turn-based empire building with districts, trade, diplomacy, culture, faith and war.",
+    "objective": "Win through science, culture, religion, conquest or by having the highest score when time runs out.",
+    "style": "Colorful, board-game-like maps with a calm, thoughtful pace."
+  },
+  {
+    "id": "itb",
+    "title": "Into the Breach",
+    "genres": [
+      "Strategy",
+      "Puzzle",
+      "Tactical",
+      "Turn-Based Strategy"
+    ],
+    "year": 2018,
+    "price": "Paid",
+    "trend": 55,
+    "how": "You command three mechs on a tiny grid against alien monsters. The game shows you exactly what each enemy will do next, and your job is to stop it.",
+    "mechanics": "Turn-based tactics where you push, pull and reposition enemies so their attacks miss or hit each other.",
+    "objective": "Protect the city buildings and survive long enough to save the timeline.",
+    "style": "Clean pixel art and short, replayable runs that feel like puzzles."
+  },
+  {
+    "id": "portal2",
+    "title": "Portal 2",
+    "genres": [
+      "Puzzle",
+      "Adventure",
+      "First-Person",
+      "Co-op"
+    ],
+    "year": 2011,
+    "price": "Paid",
+    "trend": 60,
+    "how": "In first person, you solve test chambers by placing two linked portals on walls and floors and carrying momentum through them.",
+    "mechanics": "The portal gun, light bridges, gels and lasers, plus a separate two-player co-op campaign.",
+    "objective": "Get through the test chambers and escape the Aperture Science facility.",
+    "style": "Sharp, dry humor and clever level design that teaches you as you play."
+  },
+  {
+    "id": "tetriseffect",
+    "title": "Tetris Effect: Connected",
+    "genres": [
+      "Puzzle",
+      "Arcade",
+      "Music"
+    ],
+    "year": 2020,
+    "price": "Paid",
+    "trend": 52,
+    "how": "You rotate and drop falling blocks to complete lines, while the music and visuals react to every move you make.",
+    "mechanics": "Classic block-stacking with a Zone ability that briefly freezes time, plus solo and multiplayer modes.",
+    "objective": "Clear lines to survive and score as high as you can through each themed stage.",
+    "style": "Music-driven and hypnotic, a bit like playing inside a light show."
+  },
+  {
+    "id": "fh5",
+    "title": "Forza Horizon 5",
+    "genres": [
+      "Racing",
+      "Open World"
+    ],
+    "year": 2021,
+    "price": "Paid",
+    "trend": 70,
+    "how": "You drive freely across a large open world set in Mexico, entering road, dirt and cross-country races or just exploring and collecting cars.",
+    "mechanics": "Hundreds of cars, tuning, adjustable driving assists, seasons that change the terrain, and online events.",
+    "objective": "Grow your festival by winning events and building a garage of your dream cars.",
+    "style": "Bright, sunny and energetic, built for relaxed cruising as much as racing."
+  },
+  {
+    "id": "mk8",
+    "title": "Mario Kart 8 Deluxe",
+    "genres": [
+      "Racing",
+      "Multiplayer",
+      "Online"
+    ],
+    "year": 2017,
+    "price": "Paid",
+    "trend": 76,
+    "how": "You race quirky karts around colorful tracks, grabbing item boxes to attack rivals or boost ahead.",
+    "mechanics": "Drifting for speed boosts, anti-gravity sections, a wide range of items, and local or online multiplayer.",
+    "objective": "Finish first in each cup and beat your friends.",
+    "style": "Light-hearted and easy to pick up, great for playing with people of any skill level."
+  },
+  {
+    "id": "rocketleague",
+    "title": "Rocket League",
+    "genres": [
+      "Sports",
+      "Multiplayer",
+      "Online"
+    ],
+    "year": 2015,
+    "price": "Free to play",
+    "trend": 72,
+    "how": "You play soccer with rocket-powered cars, teaming up to knock a giant ball into the other team's goal.",
+    "mechanics": "Boost pickups, jumping and flipping, and mid-air hits, usually in short 3-versus-3 matches.",
+    "objective": "Score more goals than the other team before the clock runs out.",
+    "style": "Fast, loud and easy to understand, with a high skill ceiling for those who want it."
+  },
+  {
+    "id": "thps",
+    "title": "Tony Hawk's Pro Skater 1 + 2",
+    "genres": [
+      "Sports"
+    ],
+    "year": 2020,
+    "price": "Paid",
+    "trend": 45,
+    "how": "You skate through real-feeling park and street levels, chaining tricks into big combos within a timed run.",
+    "mechanics": "Ollies, grinds, manuals and lip tricks, with goals like collecting letters and hitting score targets in each level.",
+    "objective": "Complete each level's goals and rack up the highest scores.",
+    "style": "Loose, arcade skating with a loud punk-flavored attitude."
+  },
+  {
+    "id": "skylines",
+    "title": "Cities: Skylines",
+    "genres": [
+      "Simulation",
+      "Strategy",
+      "City Builder"
+    ],
+    "year": 2015,
+    "price": "Paid",
+    "trend": 50,
+    "how": "You start with an empty patch of land and lay out roads, zones and services to grow a city while keeping the budget healthy.",
+    "mechanics": "Zoning, traffic flow, utilities, public transport, taxes and a large community of mods.",
+    "objective": "Build a thriving city. There's no fixed ending, only the one you design.",
+    "style": "Calm and creative, with a map you can zoom right down to street level."
+  },
+  {
+    "id": "sts",
+    "title": "Slay the Spire",
+    "genres": [
+      "Strategy",
+      "Roguelike",
+      "Deck Building"
+    ],
+    "year": 2019,
+    "price": "Paid",
+    "trend": 62,
+    "how": "You climb a tower one fight at a time, adding cards to your deck and choosing paths on a branching map. If you die, you start over with what you learned.",
+    "mechanics": "Deck-building and turn-based card combat with relics that change your strategy.",
+    "objective": "Reach the top of the Spire and defeat what waits there.",
+    "style": "Simple, comic-style visuals with runs that take under an hour."
+  },
+  {
+    "id": "disco",
+    "title": "Disco Elysium",
+    "genres": [
+      "RPG",
+      "Adventure",
+      "Narrative"
+    ],
+    "year": 2019,
+    "price": "Paid",
+    "trend": 57,
+    "how": "You wake up as an amnesiac detective and investigate a murder mainly by talking to people, reading and making choices. There is no traditional combat.",
+    "mechanics": "Skill checks decided by dice, with your skills speaking up as opinionated voices in your head.",
+    "objective": "Solve the murder case and figure out who you are.",
+    "style": "Painted, text-heavy and darkly funny, closer to an interactive novel."
+  },
+  {
+    "id": "re4",
+    "title": "Resident Evil 4",
+    "genres": [
+      "Survival Horror",
+      "Action",
+      "Shooter"
+    ],
+    "year": 2023,
+    "price": "Paid",
+    "trend": 68,
+    "how": "You play a government agent sent to rescue a kidnapped daughter from a remote village, fighting off infected villagers in tense third-person combat.",
+    "mechanics": "Limited ammo and inventory space, a knife you can use to parry, and a merchant who sells upgrades.",
+    "objective": "Find and rescue the president's daughter and escape alive.",
+    "style": "Cinematic survival horror with plenty of action and some wonderfully over-the-top moments."
+  },
+  {
+    "id": "balatro",
+    "title": "Balatro",
+    "genres": [
+      "Puzzle",
+      "Strategy",
+      "Roguelike",
+      "Deck Building",
+      "Card Game"
+    ],
+    "year": 2024,
+    "price": "Paid",
+    "trend": 80,
+    "how": "You play poker hands to score enough points to beat each round, then buy special cards that bend the rules in your favor.",
+    "mechanics": "Poker hand scoring combined with roguelike deck-building and hundreds of game-changing joker cards.",
+    "objective": "Beat all the rounds through eight antes by building a scoring engine.",
+    "style": "Retro CRT-style visuals and quick runs that are easy to start and hard to stop."
+  },
+  {
+    "id": "persona5",
+    "title": "Persona 5 Royal",
+    "genres": [
+      "RPG",
+      "JRPG",
+      "Simulation",
+      "Turn-Based Strategy"
+    ],
+    "year": 2020,
+    "price": "Paid",
+    "trend": 64,
+    "how": "You live as a high school student by day and a masked thief by night, balancing school life and friendships with dungeon crawls.",
+    "mechanics": "Turn-based combat that rewards hitting enemy weaknesses, a daily calendar and relationship building.",
+    "objective": "Change the hearts of corrupt adults and uncover the conspiracy behind them.",
+    "style": "Extremely stylish, with jazzy music and bold, graphic menus."
+  },
+  {
+    "id": "minecraft",
+    "title": "Minecraft",
+    "genres": [
+      "Adventure",
+      "Simulation",
+      "Sandbox",
+      "Survival"
+    ],
+    "year": 2011,
+    "price": "Paid",
+    "trend": 85,
+    "how": "You explore a world made of blocks, gathering resources, crafting tools and building whatever you can imagine.",
+    "mechanics": "Mining, crafting and survival against monsters, or Creative mode with unlimited blocks, plus multiplayer.",
+    "objective": "Set your own goals. You can also travel far enough to take on the Ender Dragon.",
+    "style": "Simple blocky graphics with room for endless creativity."
+  },
+  {
+    "id": "apex",
+    "title": "Apex Legends",
+    "genres": [
+      "Action",
+      "Shooter",
+      "FPS",
+      "Battle Royale",
+      "Multiplayer",
+      "Online"
+    ],
+    "year": 2019,
+    "price": "Free to play",
+    "trend": 71,
+    "how": "Squads of three drop onto a large map, scavenge weapons and fight until only one squad is left standing.",
+    "mechanics": "Hero characters with unique abilities, sliding and climbing movement, and a ping system for teamwork.",
+    "objective": "Be the last squad alive in each match.",
+    "style": "Fast, competitive sci-fi shooting that rewards good communication.",
+    "image_url": "/uploads/7c8579244fc340328af23609b62cd2aa.jpg"
+  },
+  {
+    "id": "totk",
+    "title": "The Legend of Zelda: Tears of the Kingdom",
+    "genres": [
+      "Adventure",
+      "Action",
+      "Open World"
+    ],
+    "year": 2023,
+    "price": "Paid",
+    "trend": 89,
+    "how": "You explore the land of Hyrule, its floating sky islands and the caves below, solving problems in whatever way you can think of.",
+    "mechanics": "Building vehicles and gadgets from parts you find, fusing items to weapons, and physics-based puzzles.",
+    "objective": "Find Zelda and stop the evil that has returned to threaten the kingdom.",
+    "style": "Bright, painterly and full of surprises, where experimenting is the main reward."
+  },
+  {
+    "id": "lethal",
+    "title": "Lethal Company",
+    "genres": [
+      "Survival Horror",
+      "Adventure",
+      "Co-op"
+    ],
+    "year": 2023,
+    "price": "Paid",
+    "trend": 59,
+    "how": "You and up to three friends land on abandoned moons to collect scrap, while dangerous creatures roam the dark corridors.",
+    "mechanics": "Co-op scavenging, a quota that rises each round, and proximity voice chat so you can only hear nearby players.",
+    "objective": "Meet the company's scrap quota without losing your crew.",
+    "style": "Low-resolution retro visuals, and a mix of real panic and goofy laughs."
+  },
+  {
+    "id": "expedition33",
+    "title": "Clair Obscur: Expedition 33",
+    "genres": [
+      "RPG",
+      "JRPG",
+      "Turn-Based Strategy",
+      "Story-Driven"
+    ],
+    "year": 2025,
+    "price": "Paid",
+    "trend": 88,
+    "how": "You lead an expedition on a doomed mission to stop a being that erases everyone of a certain age each year. Combat is turn-based but you dodge and parry in real time.",
+    "mechanics": "Turn-based battles with active dodging, parrying and counterattacking, and a flexible skill system.",
+    "objective": "Reach and defeat the Paintress before your expedition runs out of time.",
+    "style": "A painterly fantasy world inspired by Belle Epoque France, with a dramatic orchestral tone."
+  },
+  {
+    "id": "factorio",
+    "title": "Factorio",
+    "genres": [
+      "Simulation",
+      "Strategy",
+      "Management"
+    ],
+    "year": 2020,
+    "price": "Paid",
+    "trend": 54,
+    "how": "You crash-land on an alien planet and gradually build larger and larger automated factories, while fending off local creatures.",
+    "mechanics": "Mining, crafting, conveyor belts, power networks and production lines that you keep improving.",
+    "objective": "Build a rocket and launch it off the planet.",
+    "style": "Top-down and systems-focused, perfect for people who love optimizing."
+  },
+  {
+    "id": "dave",
+    "title": "Dave the Diver",
+    "genres": [
+      "Adventure",
+      "Simulation",
+      "Management"
+    ],
+    "year": 2023,
+    "price": "Paid",
+    "trend": 65,
+    "how": "You dive into the mysterious Blue Hole during the day to catch fish, then run a sushi restaurant at night with what you caught.",
+    "mechanics": "Underwater exploration and fishing, restaurant management, crafting and upgrades, all in one loop.",
+    "objective": "Uncover the secrets of the Blue Hole while growing a successful restaurant.",
+    "style": "Charming pixel art with a cheerful, quirky sense of humor."
+  },
+  {
+    "id": "pacman",
+    "title": "PAC-MAN",
+    "genres": [
+      "Arcade",
+      "Action"
+    ],
+    "year": 1980,
+    "price": "Paid",
+    "trend": 63,
+    "how": "Navigate a maze, clearing pellets while avoiding four ghosts. Power pellets briefly let Pac-Man turn and chase them.",
+    "mechanics": "Grid-based movement, maze routes, power pellets, bonus fruit, and ghosts with distinct behaviors.",
+    "objective": "Clear each maze of pellets, avoid losing all lives, and build the highest score you can.",
+    "style": "Bright maze graphics, bold character shapes, distinctive ghost colors, and classic arcade sound effects."
+  },
+  {
+    "id": "witcher3",
+    "title": "The Witcher 3: Wild Hunt",
+    "genres": [
+      "RPG",
+      "Action",
+      "Open World",
+      "Story-Driven"
+    ],
+    "year": 2015,
+    "price": "Paid",
+    "trend": 88,
+    "how": "Play as Geralt, investigating monster contracts across a sprawling world where conversations and choices can reshape outcomes and relationships.",
+    "mechanics": "Third-person action combat, signs (magic), quest-driven exploration, and branching decisions that affect quests, factions, and endings.",
+    "objective": "Hunt the Wild Hunt and uncover the truth behind Ciri\u00e2\u20ac\u2122s fate.",
+    "style": "Dark fantasy with dense writing, cinematic character moments, and a lived-in open world."
+  },
+  {
+    "id": "godofwar",
+    "title": "God of War (2018)",
+    "genres": [
+      "Action",
+      "Action-Adventure",
+      "Hack and Slash",
+      "Story-Driven"
+    ],
+    "year": 2018,
+    "price": "Paid",
+    "trend": 85,
+    "how": "Travel through Norse realms with Kratos as you fight enemies, solve hazards, and advance a personal story.",
+    "mechanics": "Heavy melee combat with block and counter timing, weapon upgrades, environmental traversal, and cinematic fights.",
+    "objective": "Complete a journey with Atreus while facing the consequences of the gods\u00e2\u20ac\u2122 plans.",
+    "style": "Mythic Norse landscapes, close camera work, and grounded character drama."
+  },
+  {
+    "id": "thelastofusparti",
+    "title": "The Last of Us Part I",
+    "genres": [
+      "Action",
+      "Adventure",
+      "Survival Horror",
+      "Story-Driven"
+    ],
+    "year": 2022,
+    "price": "Paid",
+    "trend": 82,
+    "how": "Guide Joel and Ellie across a dangerous post-pandemic United States while navigating hostile groups and infected.",
+    "mechanics": "Third-person combat, stealth, scavenging, crafting, and resource management through story-led encounters.",
+    "objective": "Escort Ellie across the country in search of a possible cure.",
+    "style": "Cinematic character storytelling with tense, grounded survival horror."
+  },
+  {
+    "id": "uncharted4",
+    "title": "Uncharted 4: A Thief\u00e2\u20ac\u2122s End",
+    "genres": [
+      "Action-Adventure",
+      "Action",
+      "Adventure",
+      "Story-Driven"
+    ],
+    "year": 2016,
+    "price": "Paid",
+    "trend": 80,
+    "how": "Pursue lost treasure across dramatic locations, alternating exploration and climbing with firefights and set pieces.",
+    "mechanics": "Third-person shooting, melee combat, platforming, climbing, light puzzles, and vehicle sequences.",
+    "objective": "Find the lost pirate colony of Libertalia and uncover the truth behind its treasure.",
+    "style": "Swashbuckling cinematic adventure with detailed environments and character-focused storytelling."
+  },
+  {
+    "id": "ghostoftsushima",
+    "title": "Ghost of Tsushima",
+    "genres": [
+      "Action-Adventure",
+      "Action",
+      "Open World",
+      "Story-Driven"
+    ],
+    "year": 2020,
+    "price": "Paid",
+    "trend": 78,
+    "how": "Defend Tsushima from a Mongol invasion, choosing whether to confront enemies openly or use stealth.",
+    "mechanics": "Open-world exploration, stance-based sword combat, stealth, duels, and side quests.",
+    "objective": "Drive the invaders from Tsushima and protect its people.",
+    "style": "Cinematic samurai drama set among painterly landscapes and atmospheric weather."
+  },
+  {
+    "id": "sekiro",
+    "title": "Sekiro: Shadows Die Twice",
+    "genres": [
+      "Action",
+      "Souls-like",
+      "Hack and Slash"
+    ],
+    "year": 2019,
+    "price": "Paid",
+    "trend": 86,
+    "how": "Fight through a dangerous version of Sengoku-era Japan, learning enemy patterns and mastering precise sword duels.",
+    "mechanics": "Posture-based sword fights, timed deflections, stealth, grappling movement, and prosthetic tools.",
+    "objective": "Protect the young lord and confront the forces pursuing his supernatural power.",
+    "style": "Austere historical fantasy focused on precise, high-stakes combat."
+  },
+  {
+    "id": "bloodborne",
+    "title": "Bloodborne",
+    "genres": [
+      "Action",
+      "Souls-like",
+      "Horror"
+    ],
+    "year": 2015,
+    "price": "Paid",
+    "trend": 74,
+    "how": "Hunt through a plague-stricken gothic city, facing dangerous creatures and uncovering the source of its nightmare.",
+    "mechanics": "Third-person melee combat, stamina management, transforming weapons, and a rally system that rewards aggressive play.",
+    "objective": "Survive the hunt and reveal the truth behind Yharnam\u00e2\u20ac\u2122s transformation.",
+    "style": "Gothic architecture, cosmic horror, and fast, demanding boss fights."
+  },
+  {
+    "id": "monsterhunterworld",
+    "title": "Monster Hunter: World",
+    "genres": [
+      "Action",
+      "RPG",
+      "Co-op"
+    ],
+    "year": 2018,
+    "price": "Paid",
+    "trend": 83,
+    "how": "Track and hunt large monsters in expeditions, then use the materials to prepare for tougher hunts.",
+    "mechanics": "Distinct weapon classes, stamina and positioning, monster tracking, crafting, and optional online co-op.",
+    "objective": "Complete assignments and investigate the New World\u00e2\u20ac\u2122s ecosystem and elder dragons.",
+    "style": "Detailed natural environments and deliberate, weighty monster battles."
+  },
+  {
+    "id": "ff7remake",
+    "title": "Final Fantasy VII Remake",
+    "genres": [
+      "JRPG",
+      "RPG",
+      "Action",
+      "Story-Driven"
+    ],
+    "year": 2020,
+    "price": "Paid",
+    "trend": 84,
+    "how": "Follow Cloud and the Avalanche group through a story-driven reimagining of Midgar.",
+    "mechanics": "Real-time party combat with tactical pauses, character switching, abilities, spells, and equipment builds.",
+    "objective": "Challenge Shinra\u00e2\u20ac\u2122s control of Midgar and uncover the forces changing the group\u00e2\u20ac\u2122s fate.",
+    "style": "Cinematic science-fantasy with detailed characters and dramatic set pieces."
+  },
+  {
+    "id": "chronotrigger",
+    "title": "Chrono Trigger",
+    "genres": [
+      "JRPG",
+      "RPG",
+      "Turn-Based Strategy",
+      "Story-Driven"
+    ],
+    "year": 1995,
+    "price": "Paid",
+    "trend": 65,
+    "how": "Travel across several eras with a party of heroes, uncovering how their choices connect to a coming catastrophe.",
+    "mechanics": "Turn-based battles with timed inputs, combined party techniques, exploration, and multiple endings.",
+    "objective": "Stop a world-ending threat whose origins stretch across time.",
+    "style": "Colorful fantasy science-fiction with expressive pixel art and a memorable score."
+  },
+  {
+    "id": "skyrim",
+    "title": "The Elder Scrolls V: Skyrim",
+    "genres": [
+      "RPG",
+      "Action",
+      "Open World",
+      "Adventure"
+    ],
+    "year": 2011,
+    "price": "Paid",
+    "trend": 81,
+    "how": "Roam Skyrim freely, following the main quest, joining factions, or taking on side quests as you choose.",
+    "mechanics": "Open-world exploration, skill-based character progression, melee, ranged and magic combat, and crafting.",
+    "objective": "Face the return of dragons while deciding how to shape your character\u00e2\u20ac\u2122s path.",
+    "style": "Expansive northern fantasy landscapes, ancient ruins, and player-directed adventure."
+  },
+  {
+    "id": "dragonageinquisition",
+    "title": "Dragon Age: Inquisition",
+    "genres": [
+      "RPG",
+      "Action-Adventure",
+      "Strategy",
+      "Story-Driven"
+    ],
+    "year": 2014,
+    "price": "Paid",
+    "trend": 70,
+    "how": "Lead the Inquisition as a magical breach threatens Thedas, building alliances and making choices that shape the conflict.",
+    "mechanics": "Party-based combat, tactical commands, character builds, companion quests, and branching decisions.",
+    "objective": "Close the breach and confront the force behind the growing crisis.",
+    "style": "High fantasy with cinematic conversations, companion stories, and large explorable regions."
+  },
+  {
+    "id": "undertale",
+    "title": "Undertale",
+    "genres": [
+      "RPG",
+      "Narrative",
+      "Story-Driven",
+      "Indie"
+    ],
+    "year": 2015,
+    "price": "Paid",
+    "trend": 77,
+    "how": "Explore an underground world and choose how to respond to the monsters you meet.",
+    "mechanics": "Turn-based encounters with bullet-dodging sequences, dialogue choices, and nonviolent ways to resolve fights.",
+    "objective": "Find a way out of the Underground while deciding the fate of its inhabitants.",
+    "style": "Quirky pixel art, playful music, and an emotionally responsive story."
+  },
+  {
+    "id": "deadcells",
+    "title": "Dead Cells",
+    "genres": [
+      "Roguelite",
+      "Action",
+      "Metroidvania"
+    ],
+    "year": 2018,
+    "price": "Paid",
+    "trend": 76,
+    "how": "Fight through shifting areas, adapting your build as each run leads to new routes and challenges.",
+    "mechanics": "Fast 2D melee and ranged combat, randomized gear, permanent unlocks, and interconnected paths.",
+    "objective": "Reach the island\u00e2\u20ac\u2122s final threats while learning more about the spreading malaise.",
+    "style": "Fluid pixel-art action with quick restarts and demanding combat."
+  },
+  {
+    "id": "oriwisps",
+    "title": "Ori and the Will of the Wisps",
+    "genres": [
+      "Metroidvania",
+      "2D Platformer",
+      "Exploration",
+      "Action"
+    ],
+    "year": 2020,
+    "price": "Paid",
+    "trend": 79,
+    "how": "Guide Ori through a connected world, gaining movement abilities to reach new areas and find lost friends.",
+    "mechanics": "Precision platforming, traversal abilities, melee combat, map exploration, and upgradeable shards.",
+    "objective": "Restore the forest and uncover the mystery threatening Niwen.",
+    "style": "Lush hand-painted environments, expressive animation, and an orchestral score."
+  },
+  {
+    "id": "cuphead",
+    "title": "Cuphead",
+    "genres": [
+      "Action",
+      "Platformer",
+      "Indie"
+    ],
+    "year": 2017,
+    "price": "Paid",
+    "trend": 73,
+    "how": "Take on challenging boss encounters and run-and-gun levels while learning each enemy\u00e2\u20ac\u2122s attack patterns.",
+    "mechanics": "Side-scrolling shooting, jumping, dashing, parries, weapon choices, and optional local co-op.",
+    "objective": "Collect the debtors\u00e2\u20ac\u2122 contracts and settle Cuphead and Mugman\u00e2\u20ac\u2122s bargain with the Devil.",
+    "style": "Hand-drawn animation inspired by 1930s cartoons, with a big-band soundtrack."
+  },
+  {
+    "id": "spelunky2",
+    "title": "Spelunky 2",
+    "genres": [
+      "Roguelike",
+      "Platformer",
+      "Exploration"
+    ],
+    "year": 2020,
+    "price": "Paid",
+    "trend": 67,
+    "how": "Descend through procedurally generated caves, navigating traps, creatures, and the consequences of your choices.",
+    "mechanics": "Permadeath runs, physics-driven platforming, equipment, branching routes, and optional multiplayer.",
+    "objective": "Survive the caves and uncover what lies beyond their deepest regions.",
+    "style": "Playful pixel-art adventure with intricate systems and punishing surprises."
+  },
+  {
+    "id": "bindingofisaacrebirth",
+    "title": "The Binding of Isaac: Rebirth",
+    "genres": [
+      "Roguelike",
+      "Action",
+      "Horror",
+      "Dungeon Crawler"
+    ],
+    "year": 2014,
+    "price": "Paid",
+    "trend": 75,
+    "how": "Guide Isaac through randomized rooms filled with enemies and hazards, collecting items that reshape each run.",
+    "mechanics": "Top-down projectile combat, procedural floors, permanent unlocks, and item combinations with varied effects.",
+    "objective": "Descend through a series of hostile areas and defeat the threats at the end of a run.",
+    "style": "Darkly comic, surreal imagery paired with fast, replayable dungeon runs."
+  },
+  {
+    "id": "riskofrain2",
+    "title": "Risk of Rain 2",
+    "genres": [
+      "Roguelite",
+      "Action",
+      "Shooter"
+    ],
+    "year": 2020,
+    "price": "Paid",
+    "trend": 72,
+    "how": "Explore alien stages and fight increasingly dangerous creatures as the run\u00e2\u20ac\u2122s difficulty steadily rises.",
+    "mechanics": "Third-person shooting, character-specific abilities, item stacking, and randomized roguelite runs.",
+    "objective": "Survive the planet\u00e2\u20ac\u2122s escalating threats and decide when to risk moving to the next stage.",
+    "style": "Colorful science-fiction environments that build into chaotic, effects-filled battles."
+  },
+  {
+    "id": "subnautica",
+    "title": "Subnautica",
+    "genres": [
+      "Survival",
+      "Exploration",
+      "Open World",
+      "First-Person"
+    ],
+    "year": 2018,
+    "price": "Paid",
+    "trend": 80,
+    "how": "Explore an alien ocean after a crash, gathering supplies and investigating what happened to your ship.",
+    "mechanics": "First-person swimming, oxygen and health management, crafting, base building, and underwater vehicles.",
+    "objective": "Learn how to survive on the planet and find a way to leave.",
+    "style": "Immersive underwater vistas balance quiet wonder with deep-sea tension."
+  },
+  {
+    "id": "outerwilds",
+    "title": "Outer Wilds",
+    "genres": [
+      "Exploration",
+      "Open World",
+      "Narrative"
+    ],
+    "year": 2019,
+    "price": "Paid",
+    "trend": 78,
+    "how": "Investigate a small solar system, following clues left behind by an ancient civilization during a repeating time loop.",
+    "mechanics": "Pilot a spaceship, explore planets on foot, solve environmental puzzles, and use knowledge to reach new clues.",
+    "objective": "Uncover the mystery behind the solar system\u00e2\u20ac\u2122s recurring end.",
+    "style": "Hand-crafted science fiction with quiet exploration, nonlinear storytelling, and an expressive soundtrack."
+  },
+  {
+    "id": "granturismo7",
+    "title": "Gran Turismo 7",
+    "genres": [
+      "Racing",
+      "Simulation"
+    ],
+    "year": 2022,
+    "price": "Paid",
+    "trend": 69,
+    "how": "Race cars across circuits and events, learning tracks and improving your collection over a structured campaign.",
+    "mechanics": "Driving physics, car tuning, licenses, race events, and vehicle collection and upgrades.",
+    "objective": "Complete events and build a garage spanning different types of motorsport.",
+    "style": "Polished automotive presentation with detailed cars, circuits, and race replays."
+  },
+  {
+    "id": "ittakestwo",
+    "title": "It Takes Two",
+    "genres": [
+      "Co-op",
+      "Adventure",
+      "Puzzle"
+    ],
+    "year": 2021,
+    "price": "Paid",
+    "trend": 87,
+    "how": "Play a two-player adventure where the characters must work together through a series of imaginative worlds.",
+    "mechanics": "Co-op platforming and puzzles, with abilities that change from chapter to chapter.",
+    "objective": "Help Cody and May work through their challenges and find a way back to normal.",
+    "style": "Colorful storybook presentation with playful set pieces and varied level design."
+  },
+  {
+    "id": "gta5",
+    "title": "Grand Theft Auto V",
+    "genres": [
+      "Action",
+      "Open World",
+      "Shooter",
+      "Story-Driven"
+    ],
+    "year": 2013,
+    "price": "Paid",
+    "trend": 90,
+    "how": "Follow three criminals across Los Santos as their lives converge around increasingly ambitious jobs.",
+    "mechanics": "Open-world driving, shooting, melee combat, character switching, and mission-based heists.",
+    "objective": "Carry out a series of high-risk heists while navigating the characters\u00e2\u20ac\u2122 conflicts.",
+    "style": "A satirical modern setting with cinematic missions and a sprawling city to explore."
+  },
+  {
+    "id": "rdr2",
+    "title": "Red Dead Redemption 2",
+    "genres": [
+      "Action-Adventure",
+      "Open World",
+      "Story-Driven",
+      "Shooter"
+    ],
+    "year": 2018,
+    "price": "Paid",
+    "trend": 88,
+    "how": "Travel with the Van der Linde gang through a changing frontier as the group struggles to stay together.",
+    "mechanics": "Open-world exploration, horseback travel, gunfights, hunting, and story missions.",
+    "objective": "Help Arthur Morgan navigate the gang\u00e2\u20ac\u2122s final years and the choices that define them.",
+    "style": "Detailed Western landscapes and a character-focused story paced by quiet and dramatic moments."
+  },
+  {
+    "id": "street_fighter_6",
+    "title": "Street Fighter 6",
+    "genres": [
+      "Fighting",
+      "Multiplayer"
+    ],
+    "year": 2023,
+    "price": "Paid",
+    "trend": 78,
+    "how": "Choose a fighter and battle through one-on-one matches against a rival or another player.",
+    "mechanics": "Character-specific attacks, combos, special moves, and the Drive Gauge for offense and defense.",
+    "objective": "Win rounds by reducing your opponent\u00e2\u20ac\u2122s health before time runs out.",
+    "style": "Colorful 2D fighting arenas with expressive animation and a street-art visual influence."
+  },
+  {
+    "id": "tekken_8",
+    "title": "Tekken 8",
+    "genres": [
+      "Fighting",
+      "Multiplayer"
+    ],
+    "year": 2024,
+    "price": "Paid",
+    "trend": 82,
+    "how": "Fight one-on-one using a roster of martial artists, each with their own style and move set.",
+    "mechanics": "Three-dimensional movement, long move lists, combos, and the Heat system that encourages aggressive play.",
+    "objective": "Defeat your rival across rounds and matches.",
+    "style": "Detailed character animation, dramatic effects, and cinematic presentation."
+  },
+  {
+    "id": "mortal_kombat_1",
+    "title": "Mortal Kombat 1",
+    "genres": [
+      "Fighting",
+      "Multiplayer"
+    ],
+    "year": 2023,
+    "price": "Paid",
+    "trend": 74,
+    "how": "Compete in one-on-one fights across a reimagined Mortal Kombat universe.",
+    "mechanics": "Special moves, combo strings, blocking, and Kameo assists from a second fighter.",
+    "objective": "Win each match by defeating your opponent in the allotted rounds.",
+    "style": "Cinematic martial-arts fantasy with vivid arenas and graphic finishing moves."
+  },
+  {
+    "id": "overwatch_2",
+    "title": "Overwatch 2",
+    "genres": [
+      "Shooter",
+      "FPS",
+      "Multiplayer",
+      "Online"
+    ],
+    "year": 2022,
+    "price": "Free to play",
+    "trend": 83,
+    "how": "Join a team of heroes and compete in objective-based matches against another team.",
+    "mechanics": "First-person shooting, hero-specific abilities, team roles, and ultimate abilities that charge during play.",
+    "objective": "Coordinate with your team to secure objectives and win the match.",
+    "style": "Bright, stylized science-fiction heroes with readable effects and fast team fights."
+  },
+  {
+    "id": "counter_strike_2",
+    "title": "Counter-Strike 2",
+    "genres": [
+      "Shooter",
+      "FPS",
+      "Tactical",
+      "Multiplayer",
+      "Online"
+    ],
+    "year": 2023,
+    "price": "Free to play",
+    "trend": 86,
+    "how": "Compete in round-based matches as attackers or defenders, where positioning and teamwork decide the outcome.",
+    "mechanics": "First-person gunplay, recoil control, weapon buying, and tactical grenades including smoke.",
+    "objective": "Plant or defuse the bomb, or eliminate the opposing team to win a round.",
+    "style": "Competitive, realistic presentation with clear maps and sound cues."
+  },
+  {
+    "id": "valorant",
+    "title": "Valorant",
+    "genres": [
+      "Shooter",
+      "FPS",
+      "Tactical",
+      "Multiplayer",
+      "Online"
+    ],
+    "year": 2020,
+    "price": "Free to play",
+    "trend": 88,
+    "how": "Play five-versus-five rounds as agents with different abilities, switching between attacking and defending.",
+    "mechanics": "First-person gunplay, economy and weapon purchases, agent abilities, and spike plant or defuse objectives.",
+    "objective": "Win rounds by eliminating the other team or completing the spike objective.",
+    "style": "Stylized near-future arenas and colorful agents paired with tactical, high-stakes rounds."
+  },
+  {
+    "id": "fortnite",
+    "title": "Fortnite",
+    "genres": [
+      "Shooter",
+      "Battle Royale",
+      "Multiplayer",
+      "Online"
+    ],
+    "year": 2017,
+    "price": "Free to play",
+    "trend": 90,
+    "how": "Drop onto an island, gather gear, and survive as the playable area shrinks around the remaining players.",
+    "mechanics": "Third-person shooting, looting, building in some modes, and squad-based play.",
+    "objective": "Be the last player or team left standing.",
+    "style": "Bright, cartoony art with a changing island and frequent themed events."
+  },
+  {
+    "id": "pubg_battlegrounds",
+    "title": "PUBG: Battlegrounds",
+    "genres": [
+      "Shooter",
+      "Battle Royale",
+      "Multiplayer",
+      "Online"
+    ],
+    "year": 2017,
+    "price": "Free to play",
+    "trend": 70,
+    "how": "Parachute onto a large map, scavenge equipment, and move toward the shrinking safe zone.",
+    "mechanics": "Third-person or first-person gunplay, weapon attachments, vehicles, and squad options.",
+    "objective": "Outlast other players or squads to win the match.",
+    "style": "Grounded military-inspired maps and tense, high-risk encounters."
+  },
+  {
+    "id": "dota_2",
+    "title": "Dota 2",
+    "genres": [
+      "MOBA",
+      "Strategy",
+      "Multiplayer",
+      "Online"
+    ],
+    "year": 2013,
+    "price": "Free to play",
+    "trend": 76,
+    "how": "Join a five-player team and battle through lanes toward the opposing team\u00e2\u20ac\u2122s base.",
+    "mechanics": "Hero selection, ability use, last-hitting for resources, item builds, and coordinated team fights.",
+    "objective": "Destroy the enemy Ancient while defending your own.",
+    "style": "Fantasy battlefields with a large hero roster and strategic map control."
+  },
+  {
+    "id": "league_of_legends",
+    "title": "League of Legends",
+    "genres": [
+      "MOBA",
+      "Strategy",
+      "Multiplayer",
+      "Online"
+    ],
+    "year": 2009,
+    "price": "Free to play",
+    "trend": 89,
+    "how": "Choose a champion and work with a team to push through lanes and contest map objectives.",
+    "mechanics": "Champion abilities, minion farming, item purchases, vision, and coordinated team fights.",
+    "objective": "Destroy the enemy Nexus while protecting your own base.",
+    "style": "Colorful fantasy characters and arenas built for fast, readable competitive play."
+  },
+  {
+    "id": "team_fortress_2",
+    "title": "Team Fortress 2",
+    "genres": [
+      "Shooter",
+      "FPS",
+      "Multiplayer",
+      "Online"
+    ],
+    "year": 2007,
+    "price": "Free to play",
+    "trend": 55,
+    "how": "Join a team and play class-based matches with different objectives and combat roles.",
+    "mechanics": "Nine character classes, distinct weapons, team coordination, and modes such as payload and control points.",
+    "objective": "Complete your team\u00e2\u20ac\u2122s map objective before the opposing team does.",
+    "style": "Expressive cartoon characters and comic exaggeration paired with competitive matches."
+  },
+  {
+    "id": "age_of_empires_2_de",
+    "title": "Age of Empires II: Definitive Edition",
+    "genres": [
+      "Strategy",
+      "RTS",
+      "Multiplayer"
+    ],
+    "year": 2019,
+    "price": "Paid",
+    "trend": 68,
+    "how": "Guide a civilization from a small settlement to a powerful empire across historical campaigns and matches.",
+    "mechanics": "Gather resources, build structures, research technologies, and command armies in real time.",
+    "objective": "Complete campaign missions or defeat rivals through conquest and strategic objectives.",
+    "style": "Historically inspired maps and armies with refreshed visuals and large-scale battles.",
+    "image_url": "/uploads/afaa1816134947b19cbe92d334c00f0d.jpg"
+  },
+  {
+    "id": "starcraft_2_wings_of_liberty",
+    "title": "StarCraft II: Wings of Liberty",
+    "genres": [
+      "RTS",
+      "Strategy",
+      "Multiplayer",
+      "Online"
+    ],
+    "year": 2010,
+    "price": "Paid",
+    "trend": 60,
+    "how": "Command Terran forces through a science-fiction campaign or compete against other players in real-time battles.",
+    "mechanics": "Gather resources, construct bases, produce units, scout, and control armies across the battlefield.",
+    "objective": "Complete campaign missions or defeat an opponent\u00e2\u20ac\u2122s forces and base.",
+    "style": "Cinematic space opera with distinct factions and fast, readable strategic combat."
+  },
+  {
+    "id": "xcom_2",
+    "title": "XCOM 2",
+    "genres": [
+      "Tactical",
+      "Turn-Based Strategy",
+      "Strategy"
+    ],
+    "year": 2016,
+    "price": "Paid",
+    "trend": 66,
+    "how": "Lead a resistance squad in missions against an alien occupation while managing operations between battles.",
+    "mechanics": "Turn-based squad combat, cover, class abilities, base management, research, and procedural mission maps.",
+    "objective": "Build the resistance and disrupt the alien regime\u00e2\u20ac\u2122s plans.",
+    "style": "Tense science fiction with tactical battlefield choices and high-stakes consequences."
+  },
+  {
+    "id": "stellaris",
+    "title": "Stellaris",
+    "genres": [
+      "Strategy",
+      "Simulation",
+      "Management"
+    ],
+    "year": 2016,
+    "price": "Paid",
+    "trend": 72,
+    "how": "Create a spacefaring civilization and explore a procedurally generated galaxy filled with other empires and events.",
+    "mechanics": "Manage planets, research, diplomacy, fleets, and political choices in a real-time grand strategy game.",
+    "objective": "Guide your empire through the galaxy\u00e2\u20ac\u2122s shifting conflicts and long-term challenges.",
+    "style": "Expansive science-fiction setting with a galaxy map and emergent stories."
+  },
+  {
+    "id": "the_sims_4",
+    "title": "The Sims 4",
+    "genres": [
+      "Simulation",
+      "Management",
+      "Casual"
+    ],
+    "year": 2014,
+    "price": "Free to play",
+    "trend": 75,
+    "how": "Create Sims and guide their daily lives, relationships, homes, and personal ambitions.",
+    "mechanics": "Life simulation, character creation, needs and skills, social interactions, and home building.",
+    "objective": "Set your own goals and shape the lives and stories of your Sims.",
+    "style": "Bright, expressive characters and a playful modern setting."
+  },
+  {
+    "id": "planet_zoo",
+    "title": "Planet Zoo",
+    "genres": [
+      "Simulation",
+      "Management"
+    ],
+    "year": 2019,
+    "price": "Paid",
+    "trend": 59,
+    "how": "Design a zoo, care for its animals, and keep guests and staff satisfied.",
+    "mechanics": "Build habitats, manage staff and finances, and balance animal welfare with visitor needs.",
+    "objective": "Create a thriving zoo that meets its animals\u00e2\u20ac\u2122 needs and remains financially sustainable.",
+    "style": "Detailed animal habitats and expressive natural environments."
+  },
+  {
+    "id": "powerwash_simulator",
+    "title": "PowerWash Simulator",
+    "genres": [
+      "Simulation",
+      "Casual"
+    ],
+    "year": 2022,
+    "price": "Paid",
+    "trend": 64,
+    "how": "Take cleaning jobs and wash grime from objects and locations using a pressure washer.",
+    "mechanics": "Aim different nozzles, adjust pressure, and clean surfaces methodically to complete each contract.",
+    "objective": "Finish jobs by removing all dirt from the specified surfaces.",
+    "style": "Satisfying before-and-after visuals with a calm, low-pressure pace."
+  },
+  {
+    "id": "microsoft_flight_simulator",
+    "title": "Microsoft Flight Simulator",
+    "genres": [
+      "Simulation",
+      "Exploration"
+    ],
+    "year": 2020,
+    "price": "Paid",
+    "trend": 58,
+    "how": "Fly a range of aircraft across a detailed digital recreation of Earth, choosing routes and weather conditions.",
+    "mechanics": "Flight controls, navigation, live or preset weather, and aircraft systems at adjustable levels of realism.",
+    "objective": "Complete flights, practice piloting, or explore destinations around the world.",
+    "style": "Realistic aircraft cockpits and expansive satellite-derived landscapes."
+  },
+  {
+    "id": "animal_crossing_new_horizons",
+    "title": "Animal Crossing: New Horizons",
+    "genres": [
+      "Adventure",
+      "Simulation",
+      "Casual",
+      "Online",
+      "Local Multiplayer"
+    ],
+    "year": 2020,
+    "price": "Paid",
+    "trend": 67,
+    "how": "Settle on a deserted island and shape it over time while meeting animal neighbors.",
+    "mechanics": "Gather materials, craft, decorate, fish, catch insects, and visit other players\u00e2\u20ac\u2122 islands.",
+    "objective": "Develop the island and create a home and community that suit your style.",
+    "style": "Cozy, colorful world with gentle music and a real-time daily rhythm.",
+    "image_url": "/uploads/c25ba017b9c24bcdaea412e560dbe6c9.jpg"
+  },
+  {
+    "id": "terraria",
+    "title": "Terraria",
+    "genres": [
+      "Adventure",
+      "Action",
+      "2D Platformer",
+      "Sandbox",
+      "Survival"
+    ],
+    "year": 2011,
+    "price": "Paid",
+    "trend": 79,
+    "how": "Explore a procedurally generated 2D world, gather materials, build, and take on increasingly powerful foes.",
+    "mechanics": "Mining, crafting, platforming, base building, equipment progression, and boss battles.",
+    "objective": "Grow stronger and progress through the world\u00e2\u20ac\u2122s bosses and late-game challenges.",
+    "style": "Colorful pixel art with a wide range of biomes, items, and creatures."
+  },
+  {
+    "id": "the_witness",
+    "title": "The Witness",
+    "genres": [
+      "Puzzle",
+      "Adventure",
+      "First-Person"
+    ],
+    "year": 2016,
+    "price": "Paid",
+    "trend": 52,
+    "how": "Explore a quiet island and solve line puzzles whose rules are taught through their visual patterns.",
+    "mechanics": "First-person exploration, environmental observation, and increasingly complex logic puzzles.",
+    "objective": "Activate the island\u00e2\u20ac\u2122s structures by solving their puzzle panels and uncovering its secrets.",
+    "style": "Bright, minimalist landscapes with sparse dialogue and a contemplative atmosphere."
+  },
+  {
+    "id": "baba_is_you",
+    "title": "Baba Is You",
+    "genres": [
+      "Puzzle"
+    ],
+    "year": 2019,
+    "price": "Paid",
+    "trend": 56,
+    "how": "Solve compact levels by pushing word tiles that define the rules of the world.",
+    "mechanics": "Rearrange statements to change object properties, control, and win conditions.",
+    "objective": "Rewrite each level\u00e2\u20ac\u2122s rules to reach its goal.",
+    "style": "Simple pixel art and word blocks that make its rule-bending puzzles easy to read."
+  },
+  {
+    "id": "the_talos_principle_2",
+    "title": "The Talos Principle 2",
+    "genres": [
+      "Puzzle",
+      "Adventure",
+      "Narrative",
+      "First-Person"
+    ],
+    "year": 2023,
+    "price": "Paid",
+    "trend": 63,
+    "how": "Explore a world of advanced puzzles while uncovering the history and debates of a new society.",
+    "mechanics": "First-person exploration and logic challenges involving tools, energy, and environmental devices.",
+    "objective": "Solve the puzzles of a mysterious megastructure and decide how its discoveries should be used.",
+    "style": "Large science-fiction environments paired with reflective conversations and ambient music."
+  },
+  {
+    "id": "ea_sports_fc_24",
+    "title": "EA Sports FC 24",
+    "genres": [
+      "Sports",
+      "Simulation",
+      "Multiplayer",
+      "Online"
+    ],
+    "year": 2023,
+    "price": "Paid",
+    "trend": 81,
+    "how": "Play football matches with club or national teams across solo and online modes.",
+    "mechanics": "Player movement, passing, shooting, defending, set pieces, and team tactics.",
+    "objective": "Score more goals than your opponent to win the match.",
+    "style": "Broadcast-inspired presentation with licensed teams, stadiums, and commentary."
+  },
+  {
+    "id": "bc25b497-71d9-4057-8b0f-7bd1413bd4e0",
+    "title": "Balls",
+    "genres": [
+      "Platformer"
+    ],
+    "year": 1990,
+    "price": "Free",
+    "trend": 0,
+    "how": "Balls go left balls go right",
+    "mechanics": "balls go bounce",
+    "objective": "BRRRRR balls",
+    "style": "Balls",
+    "image_url": "/uploads/949cd813838044f5a462d283aa4b6e7f.jpg"
+  }
+]

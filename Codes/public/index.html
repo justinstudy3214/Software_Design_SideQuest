@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='5' y='5' width='22' height='22' rx='4' transform='rotate(45 16 16)' fill='%2315173B'/%3E%3Ccircle cx='16' cy='16' r='4.5' fill='%23F2F3FA'/%3E%3C/svg%3E">
+<title>Sidequest: find your next game in any genre</title>
+<meta name="description" content="A web-based, all-genre game discovery platform with a personalized daily feed.">
+<script>
+  try {
+    if (localStorage.getItem('sidequest-theme') === 'dark') {
+      document.documentElement.dataset.theme = 'dark';
+    }
+  } catch (_) {}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light;
+    --paper: #F2F3FA;
+    --paper-rgb: 242, 243, 250;
+    --surface: #FFFFFF;
+    --surface-hover: #E4E6F8;
+    --ink: #15173B;
+    --ink-2: #4A4D75;
+    --line: #D3D6EC;
+    --signal: #3341F0;
+    --signal-dark: #2531C9;
+    --signal-ink: #FFFFFF;
+    --strong-bg: #15173B;
+    --strong-ink: #FFFFFF;
+    --overlay-bg: #15173B;
+    --overlay-ink: #FFFFFF;
+    --cover-shadow: #15173B;
+    --cover-bg: #333333;
+    --placeholder: #7A7DA3;
+    --save-bg: rgba(255, 255, 255, .92);
+    --action-border: rgba(21, 23, 59, .16);
+    --toast-link: #B9C0FF;
+    --backdrop: rgba(21, 23, 59, .62);
+    --white: #FFFFFF;
+    --display: "Bricolage Grotesque", "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+    --body: "Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  }
+
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --paper: #191719;
+    --paper-rgb: 25, 23, 25;
+    --surface: #242124;
+    --surface-hover: #38313C;
+    --ink: #F2EDF2;
+    --ink-2: #A4B2BD;
+    --line: #49434A;
+    --signal: #A6ADFF;
+    --signal-dark: #BFC4FF;
+    --signal-ink: #191719;
+    --strong-bg: #38313C;
+    --strong-ink: #F2EDF2;
+    --overlay-bg: #242124;
+    --overlay-ink: #F2EDF2;
+    --cover-shadow: #080708;
+    --cover-bg: #111111;
+    --placeholder: #A4B2BD;
+    --save-bg: rgba(36, 33, 36, .94);
+    --action-border: rgba(242, 237, 242, .32);
+    --toast-link: #A6ADFF;
+    --backdrop: rgba(0, 0, 0, .76);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1rem;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: var(--display); margin: 0; letter-spacing: -0.02em; }
+  p { margin: 0; }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; }
+  .wrap { width: min(1180px, 100% - 2.5rem); margin-inline: auto; }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap;
+  }
+
+  /* ---------- Header ---------- */
+  .site-header {
+    position: sticky; top: 0; z-index: 20;
+    background: var(--paper);
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .bar { display: flex; align-items: center; gap: 1.5rem; padding-block: .8rem; }
+  .logo { display: flex; align-items: center; gap: .55rem; text-decoration: none; font-family: var(--display); font-weight: 800; font-size: 1.5rem; letter-spacing: -0.03em; }
+  .logo svg { width: 28px; height: 28px; }
+  .nav { display: flex; gap: 1.25rem; margin-left: .5rem; }
+  .nav a { white-space: nowrap; text-decoration: none; font-weight: 500; padding: .25rem 0; border-bottom: 2px solid transparent; }
+  .nav a:hover { border-bottom-color: var(--ink); }
+  .bar-right { margin-left: auto; display: flex; align-items: center; gap: .75rem; }
+  .nav-profile { color: var(--signal); }
+  .search {
+    width: min(340px, 40vw);
+    padding: .55rem 1rem;
+    border: 1.5px solid var(--ink);
+    border-radius: 999px;
+    background: var(--surface);
+    font: inherit; color: var(--ink);
+  }
+  .search::placeholder { color: var(--placeholder); }
+  .theme-btn {
+    padding: .5rem .9rem; border-radius: 999px;
+    border: 1.5px solid var(--ink); background: var(--surface); font-weight: 600; white-space: nowrap;
+  }
+  .theme-btn:hover { background: var(--surface-hover); }
+  .saved-btn {
+    display: inline-flex; align-items: center; gap: .45rem;
+    padding: .5rem .9rem; border-radius: 999px;
+    border: 1.5px solid var(--ink); background: transparent; font-weight: 600;
+  }
+  .saved-btn:hover { background: var(--strong-bg); color: var(--strong-ink); }
+  .saved-btn .bookmark-glyph { width: 16px; height: 16px; }
+  .bookmark-glyph {
+    display: inline-block; width: 19px; height: 19px; flex: 0 0 auto;
+    background-color: currentColor;
+    -webkit-mask: url('/bookmark.svg') center / contain no-repeat;
+    mask: url('/bookmark.svg') center / contain no-repeat;
+  }
+  .count { font-variant-numeric: tabular-nums; }
+  .logout-btn {
+    display: inline-flex; align-items: center; gap: .45rem;
+    padding: .5rem .9rem; border-radius: 999px;
+    border: 1.5px solid var(--ink); background: transparent; color: var(--ink); font-weight: 600;
+    white-space: nowrap;
+  }
+  .logout-btn:hover { background: var(--strong-bg); border-color: var(--strong-bg); color: var(--strong-ink); }
+  .logout-icon {
+    display: inline-block; width: 16px; height: 16px; flex: 0 0 16px;
+    background-color: currentColor;
+    -webkit-mask: url('/logout.svg') center / contain no-repeat;
+    mask: url('/logout.svg') center / contain no-repeat;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero { padding-block: clamp(2.5rem, 6vw, 5rem) clamp(2.5rem, 5vw, 4rem); }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .hero h1 {
+    font-size: clamp(2.5rem, 5.6vw, 4.6rem);
+    line-height: .98; font-weight: 800; letter-spacing: -0.035em;
+    max-width: 15ch;
+  }
+  .hero-sub { margin-top: 1.25rem; font-size: 1.125rem; color: var(--ink-2); max-width: 52ch; }
+  .picker-label { margin-top: 2rem; font-weight: 600; }
+  .chips { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: .75rem; }
+  .chip {
+    display: inline-flex; align-items: center; gap: .5rem;
+    padding: .45rem .95rem;
+    border: 1.5px solid var(--ink); border-radius: 999px;
+    background: transparent; font-weight: 600;
+    transition: background .15s, color .15s, border-color .15s, box-shadow .15s;
+  }
+  .chip i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .chip:hover { background: var(--surface-hover); }
+  .chip[aria-pressed="true"] {
+    border: 2px solid var(--signal); background: var(--signal); color: var(--signal-ink);
+    box-shadow: 0 0 0 2px var(--paper), 0 0 0 4px var(--signal); font-weight: 700;
+  }
+  .chip[aria-pressed="true"] i { box-shadow: 0 0 0 2px var(--signal), 0 0 0 3.5px var(--signal-ink); }
+  .chip[aria-pressed="true"]:hover { border-color: var(--signal-dark); background: var(--signal-dark); }
+  .link-btn { background: none; border: 0; padding: 0; text-decoration: underline; text-underline-offset: 3px; color: var(--ink-2); }
+  .link-btn:hover { color: var(--ink); }
+  .hero-foot { margin-top: 1rem; }
+
+  /* ---------- Stack of the bigcards --------- */ 
+  .stack-wrap { position: relative; }
+  .stack { position: relative; height: 430px; max-width: 430px; margin-inline: auto; }
+  .stack-caption { text-align: center; margin-top: .75rem; font-weight: 600; color: var(--ink-2); }
+  .stack-item { position: absolute; width: 210px; transition: transform .25s ease; }
+  .stack-item.s0 { left: 82px; top: -200px; z-index: 3; transform: rotate(-3deg); }
+  .stack-item.s1 { left: 250px; top: -100px; z-index: 4; transform: rotate(18deg); }
+  .stack-item.s2 { left: 80px; top: 320px; z-index: 1; transform: rotate(-8deg); }
+  .stack-item:hover, .stack-item:focus-visible { z-index: 5; transform: rotate(0deg) translateY(-8px); }
+
+  /* ---------- Sections ---------- */
+  .section { padding-block: clamp(2rem, 4vw, 3.25rem); }
+  .section-head { display: flex; align-items: end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .section-head h2 { font-size: clamp(1.6rem, 3vw, 2.25rem); font-weight: 800; }
+  .section-head p { color: var(--ink-2); margin-top: .25rem; max-width: 60ch; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 1.75rem 1.5rem; }
+  .profile-section { border-top: 1.5px solid var(--line); }
+  .profile-title { font-size: clamp(1.6rem, 3vw, 2.25rem); font-weight: 800; margin-bottom: 1rem; }
+  .profile-tabs {
+    display: flex; gap: 1.5rem; overflow-x: auto;
+    border-bottom: 1.5px solid var(--line); margin-bottom: 1.25rem;
+  }
+  .profile-tab {
+    flex: 0 0 auto; padding: .65rem .15rem .55rem; margin-bottom: -1.5px;
+    border: 0; border-bottom: 3px solid transparent; background: transparent;
+    color: var(--ink-2); font-weight: 600; white-space: nowrap;
+  }
+  .profile-tab[aria-selected="true"] { border-bottom-color: var(--signal); color: var(--ink); }
+  .profile-tab-count { font-variant-numeric: tabular-nums; }
+  .profile-panel[hidden] { display: none; }
+  .profile-stage { display: grid; }
+  .profile-stage > .grid,
+  .profile-stage > .profile-empty { grid-area: 1 / 1; }
+  .profile-stage > .grid:not(.profile-grid-spacer) { align-content: start; }
+  .profile-stage > .profile-empty { align-self: center; justify-self: center; z-index: 1; }
+  .profile-grid-spacer { visibility: hidden; pointer-events: none; user-select: none; }
+  .profile-cover-spacer { aspect-ratio: 3 / 4; }
+  .profile-pagination.is-placeholder { visibility: hidden; }
+  .profile-pagination {
+    display: flex; justify-content: center; flex-wrap: nowrap; gap: .4rem;
+    min-height: 2.5rem; margin-top: 1.25rem; overflow-x: auto; overflow-y: hidden;
+  }
+  .profile-page-btn {
+    flex: 0 0 auto; min-width: 2.5rem; height: 2.5rem; padding: 0 .55rem;
+    border: 1.5px solid var(--line); border-radius: 6px;
+    background: var(--surface); color: var(--ink); font: inherit; font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .profile-page-btn:hover { background: var(--surface-hover); }
+  .profile-page-btn[aria-current="page"] { border-color: var(--signal); background: var(--signal); color: var(--signal-ink); }
+  .card-action.save.on .bookmark-glyph,
+  .save-action[aria-pressed="true"] .bookmark-glyph {
+    -webkit-mask-image: url('/bookmark-filled.svg');
+    mask-image: url('/bookmark-filled.svg');
+  }
+  .actions .bookmark-glyph { width: 18px; height: 18px; }
+  .profile-empty {
+    border: 1.5px solid var(--line); border-radius: 10px; background: var(--surface);
+    padding: clamp(1.25rem, 4vw, 2rem); max-width: 760px;
+  }
+  .profile-empty h3 { font-size: 1.4rem; margin-bottom: .4rem; }
+  .profile-empty p { color: var(--ink-2); }
+  .profile-empty a { display: inline-block; margin-top: .75rem; color: var(--signal); font-weight: 600; text-underline-offset: 3px; }
+
+  /* ---------- Game card: box art ---------- */
+  .game { position: relative; transition: z-index .18s ease; }
+  .game:hover { z-index: 19; }
+  .cover {
+    position: relative; display: block; width: 100%;
+    aspect-ratio: 3 / 4; padding: 0; border: 0;
+    border-radius: 6px; overflow: hidden;
+    background: var(--cover-bg); color: var(--white); text-align: left;
+    box-shadow: 5px 5px 0 var(--cover-shadow);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .cover svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .cover::before {
+    content: ""; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(to top, rgba(10, 11, 35, .78), rgba(10, 11, 35, 0) 58%);
+  }
+  .cover::after {
+    content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    box-shadow: inset 9px 0 0 rgba(0, 0, 0, .18), inset 10px 0 0 rgba(255, 255, 255, .16);
+  }
+  .cover-title {
+    position: absolute; z-index: 2; left: 18px; right: 14px; bottom: 14px;
+    font-family: var(--display); font-weight: 800;
+    font-size: clamp(1.1rem, 1.5vw, 1.35rem); line-height: 1.05; letter-spacing: -0.02em;
+  }
+  .game:hover .cover, .cover:focus-visible { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 var(--cover-shadow); }
+  .game-meta { margin-top: 1rem; min-height: 2.5rem; position: relative; }
+  .tags { display: flex; flex-wrap: wrap; gap: .25rem .75rem; font-size: .875rem; font-weight: 500; max-height: 2rem; overflow: hidden; position: relative; }
+  .tags::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 50%, rgba(var(--paper-rgb), 1) 100%); pointer-events: none; }
+  .tag { display: inline-flex; align-items: center; gap: .35rem; }
+  .tag i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .note { margin-top: .3rem; font-size: .875rem; color: var(--ink-2); }
+  .game-tooltip { 
+    position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); 
+    background: var(--overlay-bg); color: var(--overlay-ink); 
+    padding: 1rem; border-radius: 8px; 
+    font-size: 0.9rem; line-height: 1.5;
+    width: 280px; max-width: 90vw;
+    z-index: 1000; pointer-events: none;
+    opacity: 0; visibility: hidden; transition: opacity .2s, visibility .2s;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    margin-bottom: 0.5rem;
+  }
+  .game-tooltip::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: var(--overlay-bg); }
+  .game-meta:hover .game-tooltip { opacity: 1; visibility: visible; }
+  .game-tooltip-title { font-weight: 600; margin-bottom: 0.5rem; }
+  .game-tooltip-genres { margin-top: 0.5rem; font-size: 0.85rem; }
+  .game-tooltip-genre-tag { display: inline-block; background: rgba(255,255,255,0.2); padding: 0.25rem 0.5rem; border-radius: 4px; margin-right: 0.25rem; margin-bottom: 0.25rem; }
+
+  .card-actions {
+    position: absolute; z-index: 3; top: 10px; right: 10px;
+    display: flex; gap: .5rem;
+  }
+  .card-action {
+    width: 38px; height: 38px; border-radius: 50%;
+    display: grid; place-items: center;
+    border: 1.5px solid var(--action-border);
+    background: var(--save-bg); color: var(--ink);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .22);
+    transition: transform .15s ease, background .15s ease, color .15s ease;
+  }
+  .card-action:hover { transform: translateY(-2px); background: var(--surface); }
+  .card-action.on { background: var(--strong-bg); color: var(--strong-ink); }
+  .card-action.on:hover { background: var(--strong-bg); }
+  .card-action svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 2; }
+  .card-action.save.on .bookmark-glyph { background-color: currentColor; }
+  .like-glyph {
+    display: block; width: 19px; height: 19px;
+    background-color: currentColor;
+    -webkit-mask: url('/thumb-up.svg') center / contain no-repeat;
+    mask: url('/thumb-up.svg') center / contain no-repeat;
+  }
+  .like-action[aria-pressed="true"] .like-glyph {
+    -webkit-mask-image: url('/thumb-up-filled.svg');
+    mask-image: url('/thumb-up-filled.svg');
+  }
+
+  /* ---------- Trending rail ---------- */
+  .rail { display: flex; gap: 1.5rem; overflow-x: auto; padding: 6px 10px 26px 4px; scroll-snap-type: x proximity; }
+  .rail-item { flex: 0 0 auto; display: grid; grid-template-columns: auto 178px; align-items: start; column-gap: .75rem; scroll-snap-align: start; }
+  .rail-item > .rank { grid-row: 1; font-family: var(--display); font-weight: 800; font-size: 4.75rem; line-height: .8; letter-spacing: -0.06em; min-width: 1ch; }
+  .rail-item > .game { grid-row: 1; grid-column: 2; }
+  .rail-item .game-meta { margin-top: 1rem; min-height: 2.5rem; position: relative; }
+  .rail-item .tags { max-height: 2rem; overflow: hidden; position: relative; }
+  .rail-item .tags::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 50%, rgba(var(--paper-rgb), 1) 100%); pointer-events: none; }
+  .rail-item .game-tooltip { 
+    position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); 
+    background: var(--overlay-bg); color: var(--overlay-ink); 
+    padding: 1rem; border-radius: 8px; 
+    font-size: 0.9rem; line-height: 1.5;
+    width: 280px; max-width: 90vw;
+    z-index: 1000; pointer-events: none;
+    opacity: 0; visibility: hidden; transition: opacity .2s, visibility .2s;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    margin-bottom: 0.5rem;
+  }
+  .rail-item .game-tooltip::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: var(--overlay-bg); }
+  .rail-item .game-meta:hover .game-tooltip { opacity: 1; visibility: visible; }
+
+  /* ---------- Browse ---------- */
+  .browse-tools { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
+  .sort { display: flex; align-items: center; gap: .5rem; font-weight: 500; }
+  .sort select {
+    font: inherit; color: var(--ink); background: var(--surface);
+    border: 1.5px solid var(--ink); border-radius: 8px; padding: .4rem .6rem;
+  }
+  .result-count { margin-bottom: 1.25rem; color: var(--ink-2); }
+  .empty { padding: 2.5rem 0; max-width: 52ch; }
+  .empty h3 { font-size: 1.4rem; margin-bottom: .4rem; }
+  .empty p { color: var(--ink-2); }
+
+  /* ---------- How it works + footer ---------- */
+  .how { border: 1.5px solid var(--line); border-radius: 10px; padding: 1rem 1.25rem; background: var(--surface); max-width: 760px; }
+  .how summary { font-weight: 600; cursor: pointer; }
+  .how p { margin-top: .75rem; color: var(--ink-2); max-width: 66ch; }
+  .site-footer { border-top: 1.5px solid var(--line); margin-top: 2rem; padding-block: 1.75rem 3rem; color: var(--ink-2); font-size: .9rem; }
+  .site-footer p { max-width: 70ch; }
+
+  /* ---------- Modal ---------- */
+  dialog#game-dialog {
+    width: min(880px, calc(100% - 2rem)); max-height: calc(100% - 2rem);
+    padding: 0; border: 0; border-radius: 12px; background: var(--surface); color: var(--ink);
+    overflow: auto;
+  }
+  dialog#game-dialog::backdrop { background: var(--backdrop); }
+  .modal { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 2rem; padding: 1.75rem; }
+  .modal .cover { box-shadow: 5px 5px 0 var(--cover-shadow); cursor: default; }
+  .modal .cover:hover { transform: none; box-shadow: 5px 5px 0 var(--cover-shadow); }
+  .modal h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); font-weight: 800; line-height: 1.02; padding-right: 2.5rem; }
+  .modal .tags { margin-top: .75rem; font-size: .95rem; }
+  .facts { margin-top: .4rem; color: var(--ink-2); font-size: .95rem; }
+  .details { margin: 1.25rem 0 0; }
+  .details dt { font-weight: 600; margin-top: .9rem; }
+  .details dd { margin: .1rem 0 0; color: var(--ink-2); max-width: 62ch; }
+  .actions { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.5rem; }
+  .actions .like-glyph { flex: 0 0 18px; width: 18px; height: 18px; }
+  .actions .bookmark-glyph { flex: 0 0 18px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .45rem;
+    padding: .6rem 1.1rem; border-radius: 999px; text-decoration: none;
+    border: 1.5px solid var(--ink); background: transparent; font-weight: 600;
+  }
+  .btn:hover { background: var(--surface-hover); }
+  .btn[aria-pressed="true"] { background: var(--strong-bg); color: var(--strong-ink); }
+  .btn.primary { background: var(--signal); border-color: var(--signal); color: var(--signal-ink); }
+  .btn.primary:hover { background: var(--signal-dark); border-color: var(--signal-dark); color: var(--signal-ink); }
+  .close {
+    position: absolute; top: 14px; right: 14px; width: 40px; height: 40px;
+    border-radius: 50%; border: 1.5px solid var(--ink); background: var(--surface);
+    display: grid; place-items: center; z-index: 5;
+  }
+  .close:hover { background: var(--strong-bg); color: var(--strong-ink); }
+  .close svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2.2; fill: none; }
+
+  /* ---------- Toast ---------- */
+  #toast {
+    position: fixed; left: 50%; bottom: 1.5rem; z-index: 50;
+    transform: translate(-50%, 20px); opacity: 0; pointer-events: none;
+    display: flex; align-items: center; gap: 1rem;
+    background: var(--overlay-bg); color: var(--overlay-ink);
+    padding: .7rem 1.1rem; border-radius: 10px; max-width: calc(100% - 2rem);
+    transition: opacity .2s, transform .2s;
+  }
+  #toast.show { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+  #toast button { background: none; border: 0; color: var(--toast-link); font-weight: 600; text-decoration: underline; padding: 0; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .nav { display: none; }
+    .hero-grid { grid-template-columns: 1fr; }
+    .search { width: min(300px, 46vw); }
+    .profile-tabs { gap: 1rem; }
+  }
+  @media (max-width: 680px) {
+    .bar { flex-wrap: wrap; gap: .6rem 1rem; }
+    .bar-right { display: contents; }
+    .saved-btn { margin-left: auto; }
+    .search { order: 5; width: 100%; }
+    .stack { height: 380px; transform: scale(.9); transform-origin: top center; }
+    .modal { grid-template-columns: 1fr; gap: 1.25rem; padding: 1.25rem; }
+    .modal .cover { max-width: 190px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem 1rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="logo" href="#top" aria-label="Sidequest home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="5" width="22" height="22" rx="4" transform="rotate(45 16 16)" fill="currentColor"/><circle cx="16" cy="16" r="4.5" fill="var(--paper)"/></svg>
+      Sidequest
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#foryou">For you</a>
+      <a href="#profile-liked" id="profileNavLink">Profile</a>
+      <a href="#trending">Trending</a>
+      <a href="#recent">Recent</a>
+      <a href="#browse">Browse</a>
+    </nav>
+    <div class="bar-right">
+      <label class="sr-only" for="q">Search games</label>
+      <input class="search" id="q" type="search" placeholder="Search a title, genre, or style" autocomplete="off">
+      <button class="theme-btn" id="themeToggle" type="button" aria-pressed="false">Dark theme</button>
+      <button class="saved-btn" id="savedBtn" type="button" aria-label="Open saved games in your profile">
+        <span class="bookmark-glyph" aria-hidden="true"></span>
+        Saved <span class="count" id="savedCount">0</span>
+      </button>
+      <button class="logout-btn" id="logoutBtn" type="button"><span class="logout-icon" aria-hidden="true"></span>Log out</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Every genre. One feed that learns your taste.</h1>
+        <p class="hero-sub">Sidequest brings action, strategy, puzzles, farming sims, racing and more into one place, then refreshes your picks every day. Tap the genres you enjoy and watch the list change.</p>
+        <p class="picker-label" id="pickerLabel">What do you like to play?</p>
+        <div class="chips" id="pickChips" role="group" aria-labelledby="pickerLabel"></div>
+        <p class="hero-foot"><button class="link-btn" id="resetBtn" type="button">Reset my taste</button></p>
+      </div>
+      <div class="stack-wrap">
+        <div class="stack" id="stack"></div>
+        <p class="stack-caption">Today's top picks for you</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section profile-section" id="profile" aria-labelledby="profileTitle">
+    <div class="wrap">
+      <h2 class="profile-title" id="profileTitle">Profile</h2>
+      <div class="profile-tabs" role="tablist" aria-label="Your games">
+        <button class="profile-tab" id="profile-liked-tab" type="button" role="tab" aria-selected="true" aria-controls="profile-liked" tabindex="0" data-profile-tab="liked">Liked (<span class="profile-tab-count" id="likedCount">0</span>)</button>
+        <button class="profile-tab" id="profile-saved-tab" type="button" role="tab" aria-selected="false" aria-controls="profile-saved" tabindex="-1" data-profile-tab="saved">Saved (<span class="profile-tab-count" id="profileSavedCount">0</span>)</button>
+      </div>
+      <div class="profile-panel" id="profile-liked" role="tabpanel" aria-labelledby="profile-liked-tab" tabindex="0"></div>
+      <div class="profile-panel" id="profile-saved" role="tabpanel" aria-labelledby="profile-saved-tab" tabindex="0" hidden></div>
+    </div>
+  </section>
+
+  <section class="section" id="foryou" aria-labelledby="foryouTitle">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2 id="foryouTitle">For you today</h2>
+          <p id="foryouSub"></p>
+        </div>
+      </div>
+      <div class="grid" id="feed"><p class="note">Loading your feed…</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="trending" aria-labelledby="trendTitle">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2 id="trendTitle">Trending now</h2>
+          <p>What players are looking at most, across every genre.</p>
+        </div>
+      </div>
+      <div class="rail" id="rail" tabindex="0" aria-label="Trending games, scroll sideways"></div>
+    </div>
+  </section>
+
+  <section class="section" id="recent" aria-labelledby="recentTitle">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2 id="recentTitle">Recent releases</h2>
+          <p>The newest titles in the catalog, newest first.</p>
+        </div>
+      </div>
+      <div class="grid" id="recentGrid"></div>
+    </div>
+  </section>
+
+  <section class="section" id="browse" aria-labelledby="browseTitle">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2 id="browseTitle">Browse every game</h2>
+          <p id="browseGenreHint">Choose multiple genres to find games tagged with all of them.</p>
+        </div>
+      </div>
+      <div class="browse-tools">
+        <div class="chips" id="tabs" role="group" aria-label="Filter by genre" aria-describedby="browseGenreHint" style="margin-top:0"></div>
+        <label class="sort">Sort by
+          <select id="sort">
+            <option value="match">Best match for me</option>
+            <option value="trend">Trending</option>
+            <option value="new">Newest</option>
+            <option value="az">A to Z</option>
+          </select>
+        </label>
+      </div>
+      <p class="result-count" id="resultCount" aria-live="polite"></p>
+      <div class="grid" id="browseGrid"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <details class="how">
+        <summary>How your feed works</summary>
+        <p>Each genre you tap is worth 3 points. Each game you like adds 1 point to its genres, and each game you mark "Not for me" takes 1 point away. Games are ranked by those points plus how much they're trending, with a small daily shuffle so the list changes from one day to the next. Two games from genres you haven't tried are mixed in so you keep finding new things. Your choices are saved to your account, so they follow you when you log in again.</p>
+      </details>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Sidequest is a prototype. The catalog is 27 sample games with descriptions written for this demo, and the trending numbers are sample data. To add or change games, use the admin dashboard or edit data/games.json and restart the server.</p>
+  </div>
+</footer>
+
+<dialog id="game-dialog" aria-labelledby="mTitle">
+  <button class="close" id="closeBtn" type="button" aria-label="Close">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 2l12 12M14 2L2 14"/></svg>
+  </button>
+  <div class="modal" id="modalBody"></div>
+</dialog>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<noscript><p style="padding:1rem">Sidequest needs JavaScript turned on to show its game feed.</p></noscript>
+
+<script>
+(() => {
+  'use strict';
+
+  /* =========================================================
+     DATA
+     Genre colors drive the generated box art.
+     The game catalog is loaded from the database (/api/games).
+     ========================================================= */
+  const GENRES = {
+    Action:               '#E03E2F',
+    'Action-Adventure':   '#D84A1F',
+    Adventure:            '#C97B0B',
+    RPG:                  '#6B47E8',
+    JRPG:                 '#7B5AE8',
+    Strategy:             '#0B7A5C',
+    Tactical:             '#1A9B5A',
+    'Turn-Based Strategy':'#3CAF72',
+    RTS:                  '#0A5F4A',
+    Simulation:           '#1E7FBF',
+    'City Builder':       '#2B9ED4',
+    Management:           '#4EAFCC',
+    Tycoon:               '#3D9FD4',
+    Sports:               '#0F8B8D',
+    Racing:               '#2B3A8C',
+    'Arcade Racing':      '#3D4BA8',
+    Puzzle:               '#C2338F',
+    'Puzzle-Platformer':  '#B8458F',
+    'Match-3':            '#A8529F',
+    Platformer:           '#4E9F1F',
+    Metroidvania:         '#5FAF2F',
+    '2D Platformer':      '#6ABF3F',
+    '3D Platformer':      '#70BF55',
+    Shooter:              '#8C2F39',
+    FPS:                  '#A03F4F',
+    TPS:                  '#8C4A5F',
+    Roguelike:            '#9F2F5F',
+    Roguelite:            '#B53F6F',
+    'Dungeon Crawler':    '#C5427E',
+    'Hack and Slash':     '#D04A8C',
+    'Souls-like':         '#7F1F3F',
+    Fighting:             '#8F2F3F',
+    'Beat-em-up':         '#9F3F4F',
+    Brawler:              '#AF4F5F',
+    Horror:               '#4A3B5C',
+    'Psychological Horror':'#5A4B6C',
+    'Survival Horror':    '#6A5B7C',
+    Survival:             '#8A6F9C',
+    Stealth:              '#3A2B5C',
+    'Rhythm Game':        '#FF6B9D',
+    'Card Game':          '#F5A623',
+    'Deck Building':      '#F2B633',
+    'Board Game':         '#DBA133',
+    Indie:                '#5F6F7F',
+    Casual:               '#9FB3CF',
+    Arcade:               '#FFD700',
+    MOBA:                 '#1E90FF',
+    'Battle Royale':      '#FF4500',
+    'Tower Defense':      '#32CD32',
+    'Auto-Battler':       '#FF69B4',
+    'Visual Novel':       '#DDA0DD',
+    'Dating Sim':         '#FF69B4',
+    Exploration:          '#20B2AA',
+    'Open World':         '#48D1CC',
+    Sandbox:              '#E0D991',
+    'Story-Driven':       '#B8860B',
+    Narrative:            '#CD853F',
+    'Point-and-Click':    '#8B7355',
+    Retro:                '#FF8C00',
+    'Indie Game':         '#6F8F8F',
+    'Co-op':              '#32CD32',
+    Multiplayer:          '#1E90FF',
+    Online:               '#00CED1',
+    'Local Multiplayer':  '#90EE90',
+    'First-Person':       '#4169E1'
+  };
+
+  let GAMES = [];
+  let byId = {};
+  let currentUser = null;
+  const GENRE_NAMES = Object.keys(GENRES);
+
+  /* =========================================================
+     HELPERS
+     ========================================================= */
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const THEME_STORAGE_KEY = 'sidequest-theme';
+
+  function applyTheme(theme, persist = false) {
+    const isDark = theme === 'dark';
+    document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
+    const toggle = $('#themeToggle');
+    toggle.textContent = isDark ? 'Light theme' : 'Dark theme';
+    toggle.setAttribute('aria-pressed', String(isDark));
+    toggle.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+    if (persist) {
+      try { localStorage.setItem(THEME_STORAGE_KEY, isDark ? 'dark' : 'light'); } catch (_) {}
+    }
+  }
+
+  applyTheme(document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
+  $('#themeToggle').addEventListener('click', () => {
+    applyTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark', true);
+  });
+  window.addEventListener('storage', event => {
+    if (event.key === THEME_STORAGE_KEY) applyTheme(event.newValue === 'dark' ? 'dark' : 'light');
+  });
+
+  function hashStr(s) {
+    let h = 2166136261;
+    for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return h >>> 0;
+  }
+  const unit = s => hashStr(s) / 4294967295;
+  function rng(seed) {
+    return () => {
+      seed |= 0; seed = (seed + 0x6D2B79F5) | 0;
+      let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  const hexRgb = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+  function mix(hex, to, t) {
+    const a = hexRgb(hex), b = hexRgb(to);
+    return '#' + a.map((v, i) => Math.round(v + (b[i] - v) * t).toString(16).padStart(2, '0')).join('');
+  }
+
+  const now = new Date();
+  const dayKey = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
+
+  /* =========================================================
+     SERVER HELPERS + PROFILE (saved to your account in the database)
+     ========================================================= */
+  async function api(path, options) {
+    const res = await fetch(path, { credentials: 'same-origin', ...options });
+    if (res.status === 401) {
+      location.replace('/login.html');
+      throw Object.assign(new Error('Not logged in'), { status: 401 });
+    }
+    if (!res.ok) throw new Error('Request failed (' + res.status + ')');
+    return res.json();
+  }
+
+  const blank = () => ({ picked: [], likes: [], passes: [], saved: [] });
+  let profile = blank();
+  let saveTimer = null;
+  const PROFILE_PAGE_SIZE = 8;
+  const profilePages = { liked: 1, saved: 1 };
+
+  function saveProfile() {               // waits a moment so quick taps are sent together
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => pushProfile(false), 250);
+  }
+  async function pushProfile(keepalive) {
+    saveTimer = null;
+    try {
+      await api('/api/profile', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(profile),
+        keepalive: !!keepalive
+      });
+    } catch (e) {
+      if (e.status !== 401) toast('Couldn\u2019t save your changes. Check that the server is running.');
+    }
+  }
+  window.addEventListener('pagehide', () => {
+    if (saveTimer) { clearTimeout(saveTimer); pushProfile(true); }
+  });
+  const state = { query: '', genres: new Set(), sort: 'match' };
+
+  /* =========================================================
+     PERSONALIZATION
+     ========================================================= */
+  const hasTaste = () => profile.picked.length > 0 || profile.likes.length > 0;
+
+  function weights() {
+    const w = {};
+    const add = (g, v) => { w[g] = (w[g] || 0) + v; };
+    profile.picked.forEach(g => add(g, 3));
+    profile.likes.forEach(id => byId[id] && byId[id].genres.forEach(g => add(g, 1)));
+    profile.passes.forEach(id => byId[id] && byId[id].genres.forEach(g => add(g, -1)));
+    return w;
+  }
+  const matchScore = (g, w) => g.genres.reduce((s, x) => s + (w[x] || 0), 0);
+  const dailyScore = (g, w) => matchScore(g, w) + (g.trend / 100) * 1.5 + unit(dayKey + g.id) * 1.8;
+
+  function reasonFor(g) {
+    const liked = profile.likes.map(id => byId[id]).find(l => l && l.id !== g.id && l.genres.some(x => g.genres.includes(x)));
+    if (liked) return `Because you liked ${liked.title}`;
+    const fav = g.genres.find(x => profile.picked.includes(x));
+    if (fav) return `Because you picked ${fav}`;
+    return 'Popular right now';
+  }
+
+  function buildFeed() {
+    const w = weights();
+    const pool = GAMES.filter(g =>
+      !profile.likes.includes(g.id) &&
+      !profile.passes.includes(g.id) &&
+      !profile.saved.includes(g.id)
+    );
+
+    if (!hasTaste()) {
+      return pool
+        .map(g => ({ g, score: g.trend + unit(dayKey + g.id) * 40, reason: 'Trending today' }))
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 8);
+    }
+
+    // Get liked games for recommendation algorithm
+    const likedGames = GAMES.filter(g => profile.likes.includes(g.id));
+    const recommendations = getRecommendedGames(pool, likedGames, w);
+
+    // Give the three closest recommendations priority, then fill with the regular ranking.
+    const recommendedIds = new Set(recommendations.map(x => x.g.id));
+    const ranked = pool
+      .map(g => ({ g, score: dailyScore(g, w), reason: reasonFor(g) }))
+      .sort((a, b) => b.score - a.score);
+
+    const main = recommendations
+      .concat(ranked.filter(x => !recommendedIds.has(x.g.id)))
+      .slice(0, 6);
+    const used = new Set(main.map(x => x.g.id));
+    const rest = ranked.filter(x => !used.has(x.g.id));
+
+    const fresh = rest
+      .filter(x => matchScore(x.g, w) <= 0)
+      .sort((a, b) => unit(dayKey + 'x' + b.g.id) - unit(dayKey + 'x' + a.g.id))
+      .slice(0, 2)
+      .map(x => ({ ...x, reason: 'Something different to try' }));
+
+    const freshIds = new Set(fresh.map(x => x.g.id));
+    const fill = rest.filter(x => !freshIds.has(x.g.id)).slice(0, 2 - fresh.length);
+    return main.concat(fresh, fill);
+  }
+
+  function getRecommendedGames(pool, likedGames, weights) {
+    if (likedGames.length === 0) return [];
+
+    // Get all genres from liked games
+    const likedGenres = new Set();
+    const genreFrequency = {};
+    
+    likedGames.forEach(game => {
+      game.genres.forEach(genre => {
+        likedGenres.add(genre);
+        genreFrequency[genre] = (genreFrequency[genre] || 0) + 1;
+      });
+    });
+
+    // Score games based on shared genres and other factors
+    const scoredGames = pool.map(game => {
+      let genreMatch = 0;
+      
+      // Count matching genres with weight boost for more common ones
+      game.genres.forEach(genre => {
+        if (likedGenres.has(genre)) {
+          genreMatch += genreFrequency[genre] * 10;
+        }
+      });
+
+      // Boost based on trending
+      const trendBoost = game.trend * 0.5;
+      
+      // Boost based on genre preference from profile weights
+      let weightBoost = 0;
+      game.genres.forEach(genre => {
+        if (weights[genre]) {
+          weightBoost += weights[genre] * 5;
+        }
+      });
+
+      const totalScore = genreMatch + trendBoost + weightBoost;
+      
+      // Determine recommendation reason
+      let reason = 'Related to games you like';
+      if (totalScore > 60) reason = 'Highly related to your favorites';
+      if (totalScore > 100) reason = 'Perfect match for your taste';
+      
+      return {
+        g: game,
+        score: totalScore,
+        reason: reason
+      };
+    });
+
+    return scoredGames
+      .filter(x => x.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 3);
+  }
+
+  /* =========================================================
+     BOX ART (generated, no image files needed)
+     ========================================================= */
+  function coverSVG(g) {
+    // If game has a custom image URL, return an image element instead of SVG
+    if (g.image_url) {
+      return `<img src="${esc(g.image_url)}" alt="${esc(g.title)}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">`;
+    }
+
+    const r = rng(hashStr(g.id));
+    const n = (a, b) => Math.round(a + r() * (b - a));
+    const base = GENRES[g.genres[0]];
+    const second = g.genres[1] ? GENRES[g.genres[1]] : mix(base, '#ffffff', .35);
+    const dark = mix(base, '#000000', .4);
+    const light = mix(base, '#ffffff', .55);
+    const kind = Math.floor(r() * 5);
+    let s = `<rect width="300" height="400" fill="${base}"/>`;
+
+    switch (kind) {
+      case 0: {
+        const cx = n(150, 250), cy = n(70, 170);
+        s += `<circle cx="${cx}" cy="${cy}" r="125" fill="${dark}" opacity=".55"/>`;
+        for (let i = 1; i <= 4; i++) s += `<circle cx="${cx}" cy="${cy}" r="${i * 28}" fill="none" stroke="${light}" stroke-width="10" opacity=".4"/>`;
+        s += `<circle cx="${cx}" cy="${cy}" r="22" fill="${second}"/>`;
+        break;
+      }
+      case 1: {
+        for (let i = 0; i < 5; i++) {
+          const x = i * 70 - 40;
+          s += `<polygon points="${x},0 ${x + 34},0 ${x + 254},400 ${x + 220},400" fill="${i % 2 ? dark : second}" opacity=".5"/>`;
+        }
+        s += `<circle cx="${n(190, 250)}" cy="${n(70, 130)}" r="46" fill="${light}" opacity=".55"/>`;
+        break;
+      }
+      case 2: {
+        for (let i = 0; i < 9; i++) {
+          const w = n(40, 110), h = n(40, 110), x = n(-10, 260), y = n(-10, 240);
+          const fill = i % 3 === 0 ? second : (i % 2 ? dark : light);
+          s += `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${fill}" opacity="${i % 3 === 0 ? .9 : .42}"/>`;
+        }
+        break;
+      }
+      case 3: {
+        s += `<polygon points="0,400 0,120 260,400" fill="${dark}" opacity=".6"/>`;
+        s += `<polygon points="300,0 300,210 110,0" fill="${second}" opacity=".85"/>`;
+        s += `<polygon points="300,400 300,250 190,400" fill="${light}" opacity=".45"/>`;
+        break;
+      }
+      default: {
+        for (let y = 0; y < 9; y++) for (let x = 0; x < 7; x++) {
+          s += `<circle cx="${20 + x * 42}" cy="${20 + y * 30}" r="${3 + ((x + y) % 4) * 2}" fill="${light}" opacity=".35"/>`;
+        }
+        s += `<circle cx="${n(180, 250)}" cy="${n(80, 150)}" r="58" fill="${second}" opacity=".9"/>`;
+      }
+    }
+    return `<svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">${s}</svg>`;
+  }
+
+  /* =========================================================
+     RENDERING
+     ========================================================= */
+  const bookmarkIcon = '<span class="bookmark-glyph" aria-hidden="true"></span>';
+  const tag = name => `<span class="tag"><i style="background:${GENRES[name]}"></i>${esc(name)}</span>`;
+
+  function card(g, note) {
+    const saved = profile.saved.includes(g.id);
+    const liked = profile.likes.includes(g.id);
+    const allGenres = g.genres.map(gen => `<span class="game-tooltip-genre-tag">${esc(gen)}</span>`).join('');
+    return `
+      <article class="game">
+        <button class="cover" type="button" data-open="${g.id}" aria-label="Open details for ${esc(g.title)}">
+          ${coverSVG(g)}<span class="cover-title">${esc(g.title)}</span>
+        </button>
+        <div class="card-actions" role="group" aria-label="Quick actions for ${esc(g.title)}">
+          <button class="card-action like-action${liked ? ' on' : ''}" type="button" data-like="${g.id}" aria-pressed="${liked}" aria-label="${liked ? 'Stop recommending games like' : 'More like'} ${esc(g.title)}" title="${liked ? 'More like this: on' : 'More like this'}"><span class="like-glyph" aria-hidden="true"></span></button>
+          <button class="card-action save${saved ? ' on' : ''}" type="button" data-save="${g.id}" aria-pressed="${saved}" aria-label="${saved ? 'Remove bookmark for' : 'Bookmark'} ${esc(g.title)}" title="${saved ? 'Saved' : 'Save for later'}">${bookmarkIcon}</button>
+        </div>
+        <div class="game-meta">
+          <p class="tags">${g.genres.map(tag).join('')}</p>
+          ${note ? `<p class="note">${esc(note)}</p>` : ''}
+          <div class="game-tooltip">
+            <div class="game-tooltip-title">${esc(g.title)}</div>
+            <div>${esc(g.how)}</div>
+            <div class="game-tooltip-genres">${allGenres}</div>
+          </div>
+        </div>
+      </article>`;
+  }
+
+  function renderStack() {
+    const top = buildFeed().slice(0, 3);
+    $('#stack').innerHTML = top.map((x, i) => `
+      <button class="cover stack-item s${i}" type="button" data-open="${x.g.id}" aria-label="Open details for ${esc(x.g.title)}">
+        ${coverSVG(x.g)}<span class="cover-title">${esc(x.g.title)}</span>
+      </button>`).join('');
+  }
+
+  function renderFeed() {
+    const dateLabel = now.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' });
+    const sub = hasTaste()
+      ? `Picked for you from ${profile.picked.length} genre${profile.picked.length === 1 ? '' : 's'} and ${profile.likes.length} liked game${profile.likes.length === 1 ? '' : 's'}. Updated for ${dateLabel}.`
+      : `Tap a few genres at the top of the page and this list will start to fit you. Updated for ${dateLabel}.`;
+    $('#foryouSub').textContent = sub;
+    $('#feed').innerHTML = buildFeed().map(x => card(x.g, x.reason)).join('');
+  }
+
+  function renderRail() {
+    const list = [...GAMES].sort((a, b) => b.trend - a.trend).slice(0, 10);
+    $('#rail').innerHTML = list.map((g, i) => `
+      <div class="rail-item">
+        <span class="rank" aria-hidden="true">${i + 1}</span>
+        ${card(g, `Trending rank ${i + 1}`)}
+      </div>`).join('');
+  }
+
+  function renderRecent() {
+    const list = [...GAMES].sort((a, b) => b.year - a.year || b.trend - a.trend).slice(0, 6);
+    $('#recentGrid').innerHTML = list.map(g => card(g, `Released ${g.year}`)).join('');
+  }
+
+  function buildChips() {
+    $('#pickChips').innerHTML = GENRE_NAMES.map(name =>
+      `<button class="chip" type="button" data-pick="${name}" aria-pressed="false"><i style="background:${GENRES[name]}"></i>${name}</button>`
+    ).join('');
+    syncChips();
+  }
+  function syncChips() {
+    document.querySelectorAll('[data-pick]').forEach(b => b.setAttribute('aria-pressed', profile.picked.includes(b.dataset.pick)));
+  }
+
+  function buildTabs() {
+    const names = ['All', ...GENRE_NAMES];
+    $('#tabs').innerHTML = names.map(name => {
+      const dot = GENRES[name] ? `<i style="background:${GENRES[name]}"></i>` : '';
+      return `<button class="chip" type="button" data-tab="${name}" aria-pressed="false">${dot}<span>${name}</span></button>`;
+    }).join('');
+    syncTabs();
+  }
+  function syncTabs() {
+    document.querySelectorAll('[data-tab]').forEach(button => {
+      const selected = button.dataset.tab === 'All'
+        ? state.genres.size === 0
+        : state.genres.has(button.dataset.tab);
+      button.setAttribute('aria-pressed', String(selected));
+    });
+  }
+
+  function browseList() {
+    const q = state.query.trim().toLowerCase();
+    const w = weights();
+    let list = GAMES.filter(g => {
+      if (![...state.genres].every(genre => g.genres.includes(genre))) return false;
+      if (state.sort === 'match' && !q && profile.saved.includes(g.id)) return false;
+      if (!q) return true;
+      return [g.title, g.genres.join(' '), g.how, g.mechanics, g.objective, g.style].join(' ').toLowerCase().includes(q);
+    });
+    const likedGames = GAMES.filter(g => profile.likes.includes(g.id));
+    const recommendedRank = new Map(
+      (state.sort === 'match' ? getRecommendedGames(list, likedGames, w) : [])
+        .map((item, index) => [item.g.id, index])
+    );
+    const sorters = {
+      match: (a, b) => {
+        const rankA = recommendedRank.get(a.id);
+        const rankB = recommendedRank.get(b.id);
+        if (rankA !== undefined || rankB !== undefined) {
+          if (rankA === undefined) return 1;
+          if (rankB === undefined) return -1;
+          if (rankA !== rankB) return rankA - rankB;
+        }
+        return hasTaste() ? dailyScore(b, w) - dailyScore(a, w) : b.trend - a.trend;
+      },
+      trend: (a, b) => b.trend - a.trend,
+      new: (a, b) => b.year - a.year || b.trend - a.trend,
+      az: (a, b) => a.title.localeCompare(b.title)
+    };
+    return list.sort(sorters[state.sort]);
+  }
+
+  function renderBrowse() {
+    const list = browseList();
+    const grid = $('#browseGrid');
+    const count = $('#resultCount');
+    if (!list.length) {
+      count.textContent = '';
+      grid.innerHTML = `<div class="empty"><h3>No games match that</h3><p>Try a genre name like puzzle or racing, or clear the search and filter to see everything.</p></div>`;
+      return;
+    }
+    const q = state.query.trim();
+    count.textContent = `${list.length} game${list.length === 1 ? '' : 's'}${q ? ` matching "${q}"` : ''}`;
+    grid.innerHTML = list.map(g => card(g, g.year + (g.price === 'Free to play' ? ', free to play' : ''))).join('');
+  }
+
+  function renderProfile() {
+    const likedGames = GAMES.filter(game => profile.likes.includes(game.id));
+    const savedGames = GAMES.filter(game => profile.saved.includes(game.id));
+    $('#likedCount').textContent = likedGames.length;
+    $('#profileSavedCount').textContent = savedGames.length;
+    $('#savedCount').textContent = savedGames.length;
+
+    const likedPanel = $('#profile-liked');
+    const savedPanel = $('#profile-saved');
+    const renderCollection = (panel, games, tab, emptyState) => {
+      const pageCount = Math.max(1, Math.ceil(games.length / PROFILE_PAGE_SIZE));
+      profilePages[tab] = Math.min(profilePages[tab], pageCount);
+      const page = profilePages[tab];
+      const start = (page - 1) * PROFILE_PAGE_SIZE;
+      const visibleGames = games.slice(start, start + PROFILE_PAGE_SIZE);
+      const pagination = `<nav class="profile-pagination${pageCount === 1 ? ' is-placeholder' : ''}" aria-label="${tab === 'liked' ? 'Liked' : 'Saved'} games pages" ${pageCount === 1 ? 'aria-hidden="true" inert' : ''}>${Array.from({ length: pageCount }, (_, index) => {
+        const pageNumber = index + 1;
+        const current = pageNumber === page;
+        return `<button class="profile-page-btn" type="button" data-profile-page="${pageNumber}" data-profile-page-tab="${tab}" aria-label="Page ${pageNumber}" ${current ? 'aria-current="page"' : ''}>${pageNumber}</button>`;
+      }).join('')}</nav>`;
+      const spacerCards = Array.from({ length: PROFILE_PAGE_SIZE }, () =>
+        '<article class="game"><div class="profile-cover-spacer"></div><div class="game-meta"></div></article>'
+      ).join('');
+      panel.innerHTML = `<div class="profile-stage">
+        <div class="grid profile-grid-spacer" aria-hidden="true" inert>${spacerCards}</div>
+        ${games.length ? `<div class="grid">${visibleGames.map(game => card(game, '')).join('')}</div>` : emptyState}
+      </div>${pagination}`;
+    };
+
+    renderCollection(
+      likedPanel,
+      likedGames,
+      'liked',
+      `<div class="profile-empty"><h3>No liked games yet</h3><p>Use “More like this” on a game to help shape your recommendations.</p><a href="#browse">Browse every game</a></div>`
+    );
+    renderCollection(
+      savedPanel,
+      savedGames,
+      'saved',
+      `<div class="profile-empty"><h3>Nothing saved yet</h3><p>Tap the bookmark on any game to keep it here.</p><a href="#foryou">See your recommendations</a></div>`
+    );
+  }
+
+  function setProfilePage(tab, requestedPage) {
+    const items = tab === 'saved' ? profile.saved : profile.likes;
+    const pageCount = Math.ceil(items.length / PROFILE_PAGE_SIZE);
+    if (!pageCount || requestedPage < 1 || requestedPage > pageCount) return;
+    profilePages[tab] = requestedPage;
+    renderProfile();
+    document.querySelector(`[data-profile-page-tab="${tab}"][aria-current="page"]`)?.focus();
+  }
+
+  function openProfileTab(tab, { scroll = false, focus = true, updateHash = true } = {}) {
+    const nextTab = tab === 'saved' ? 'saved' : 'liked';
+    const activeButton = $(`[data-profile-tab="${nextTab}"]`);
+    activeButton.setAttribute('aria-selected', 'true');
+    activeButton.tabIndex = 0;
+    document.querySelectorAll('[data-profile-tab]').forEach(button => {
+      if (button !== activeButton) {
+        button.setAttribute('aria-selected', 'false');
+        button.tabIndex = -1;
+      }
+    });
+    $('#profile-liked').hidden = nextTab !== 'liked';
+    $('#profile-saved').hidden = nextTab !== 'saved';
+    const profileHash = `#profile-${nextTab}`;
+    if (updateHash && location.hash !== profileHash) history.pushState(null, '', profileHash);
+    if (focus) activeButton.focus({ preventScroll: true });
+    if (scroll) $('#profile').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function renderAll() {
+    renderStack();
+    renderProfile();
+    renderFeed();
+    renderRail();
+    renderRecent();
+    renderBrowse();
+    syncChips();
+    syncTabs();
+  }
+
+  /* =========================================================
+     GAME DETAIL DIALOG
+     ========================================================= */
+  const dlg = $('#game-dialog');
+  let currentId = null;
+
+  function renderModal() {
+    const g = byId[currentId];
+    const liked = profile.likes.includes(g.id);
+    const passed = profile.passes.includes(g.id);
+    const saved = profile.saved.includes(g.id);
+    const free = g.price === 'Free to play';
+    const link = 'https://www.google.com/search?q=' + encodeURIComponent(g.title + ' game ' + (free ? 'play' : 'buy'));
+
+    $('#modalBody').innerHTML = `
+      <div>
+        <div class="cover" role="img" aria-label="Box art for ${esc(g.title)}">${coverSVG(g)}<span class="cover-title">${esc(g.title)}</span></div>
+      </div>
+      <div>
+        <h2 id="mTitle">${esc(g.title)}</h2>
+        <p class="tags">${g.genres.map(tag).join('')}</p>
+        <p class="facts">Released ${g.year}. ${free ? 'Free to play.' : 'Paid game.'}</p>
+        <dl class="details">
+          <dt>How it plays</dt><dd>${esc(g.how)}</dd>
+          <dt>Mechanics</dt><dd>${esc(g.mechanics)}</dd>
+          <dt>Objective</dt><dd>${esc(g.objective)}</dd>
+          <dt>General style</dt><dd>${esc(g.style)}</dd>
+        </dl>
+        <div class="actions">
+          <a class="btn primary" href="${link}" target="_blank" rel="noopener noreferrer">${free ? 'Find where to play' : 'Find where to buy'}</a>
+          <button class="btn like-action" type="button" data-act="like" aria-pressed="${liked}"><span class="like-glyph" aria-hidden="true"></span>${liked ? 'Liked' : 'More like this'}</button>
+          <button class="btn save-action" type="button" data-act="save" aria-pressed="${saved}">${bookmarkIcon}${saved ? 'Saved' : 'Save for later'}</button>
+          <button class="btn" type="button" data-act="pass">${passed ? 'Show in my feed again' : 'Not for me'}</button>
+        </div>
+      </div>`;
+  }
+
+  function openGame(id) {
+    currentId = id;
+    renderModal();
+    if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', '');
+  }
+
+  /* =========================================================
+     ACTIONS
+     ========================================================= */
+  let toastTimer;
+  function toast(msg, undo) {
+    const el = $('#toast');
+    el.textContent = '';
+    const span = document.createElement('span');
+    span.textContent = msg;
+    el.append(span);
+    if (undo) {
+      const b = document.createElement('button');
+      b.type = 'button'; b.textContent = 'Undo';
+      b.addEventListener('click', () => { undo(); el.classList.remove('show'); });
+      el.append(b);
+    }
+    el.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.classList.remove('show'), 4500);
+  }
+
+  const toggle = (arr, id) => arr.includes(id) ? arr.filter(x => x !== id) : [...arr, id];
+
+  function toggleSave(id) {
+    profile.saved = toggle(profile.saved, id);
+    saveProfile();
+    renderAll();
+  }
+  function toggleLike(id) {
+    profile.likes = toggle(profile.likes, id);
+    profile.passes = profile.passes.filter(x => x !== id);
+    saveProfile();
+    renderAll();
+  }
+  function togglePass(id) {
+    const wasPassed = profile.passes.includes(id);
+    if (wasPassed) {
+      profile.passes = profile.passes.filter(x => x !== id);
+      saveProfile(); renderAll();
+      return;
+    }
+    profile.passes = [...profile.passes, id];
+    profile.likes = profile.likes.filter(x => x !== id);
+    saveProfile();
+    dlg.close();
+    renderAll();
+    toast(`Hidden ${byId[id].title} from your feed.`, () => {
+      profile.passes = profile.passes.filter(x => x !== id);
+      saveProfile(); renderAll();
+    });
+  }
+  function togglePick(name) {
+    const preferenceChanged = profile.picked.length !== 1 || profile.picked[0] !== name;
+    if (preferenceChanged) {
+      profile.picked = [name];
+      saveProfile();
+      renderStack();
+      renderFeed();
+    }
+    syncChips();
+    setTab(name, { scroll: true });
+  }
+  function setTab(name, { scroll = false, allowToggle = false } = {}) {
+    if (name === 'All') {
+      state.genres.clear();
+    } else if (allowToggle && state.genres.has(name)) {
+      state.genres.delete(name);
+    } else {
+      state.genres.add(name);
+    }
+    syncTabs();
+    renderBrowse();
+    if (scroll) $('#browse').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  /* =========================================================
+     EVENTS
+     ========================================================= */
+  document.addEventListener('click', e => {
+    const t = e.target.closest('[data-open],[data-like],[data-save],[data-pick],[data-tab],[data-act],[data-profile-page]');
+    if (!t) return;
+    if (t.dataset.profilePage) setProfilePage(t.dataset.profilePageTab, Number(t.dataset.profilePage));
+    else if (t.dataset.open) openGame(t.dataset.open);
+    else if (t.dataset.like) toggleLike(t.dataset.like);
+    else if (t.dataset.save) toggleSave(t.dataset.save);
+    else if (t.dataset.pick) togglePick(t.dataset.pick);
+    else if (t.dataset.tab) setTab(t.dataset.tab, { allowToggle: true });
+    else if (t.dataset.act) {
+      if (t.dataset.act === 'like') { toggleLike(currentId); renderModal(); }
+      if (t.dataset.act === 'save') { toggleSave(currentId); renderModal(); }
+      if (t.dataset.act === 'pass') { togglePass(currentId); if (dlg.open) renderModal(); }
+    }
+  });
+
+  $('#closeBtn').addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+
+  $('#q').addEventListener('focus', () => {
+    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+  });
+
+  $('#q').addEventListener('input', e => {
+    const hadQuery = state.query.trim().length > 0;
+    state.query = e.target.value;
+    renderBrowse();
+    if (!hadQuery && state.query.trim()) $('#browse').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  $('#sort').addEventListener('change', e => { state.sort = e.target.value; renderBrowse(); });
+
+  document.querySelectorAll('[data-profile-tab]').forEach((tab, index, tabs) => {
+    tab.addEventListener('click', () => openProfileTab(tab.dataset.profileTab));
+    tab.addEventListener('keydown', event => {
+      let targetIndex = index;
+      if (event.key === 'ArrowRight') targetIndex = (index + 1) % tabs.length;
+      else if (event.key === 'ArrowLeft') targetIndex = (index - 1 + tabs.length) % tabs.length;
+      else if (event.key === 'Home') targetIndex = 0;
+      else if (event.key === 'End') targetIndex = tabs.length - 1;
+      else return;
+      event.preventDefault();
+      openProfileTab(tabs[targetIndex].dataset.profileTab);
+    });
+  });
+
+  $('#profileNavLink').addEventListener('click', event => {
+    event.preventDefault();
+    openProfileTab('liked', { scroll: true });
+  });
+
+  $('#savedBtn').addEventListener('click', () => {
+    openProfileTab('saved', { scroll: true });
+  });
+  window.addEventListener('popstate', () => {
+    if (location.hash === '#profile-liked' || location.hash === '#profile-saved') {
+      openProfileTab(location.hash === '#profile-saved' ? 'saved' : 'liked', { focus: false, scroll: true, updateHash: false });
+    } else {
+      openProfileTab('liked', { focus: false, updateHash: false });
+    }
+  });
+
+  $('#logoutBtn').addEventListener('click', async () => {
+    if (saveTimer) { clearTimeout(saveTimer); await pushProfile(false); }
+    try {
+      await fetch('/api/logout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
+    } catch (e) { /* ignore: we still leave the page */ }
+    location.replace('/login.html');
+  });
+
+  $('#resetBtn').addEventListener('click', () => {
+    if (!confirm('Clear your picked genres, likes, skipped games and saved games?')) return;
+    profile = blank();
+    saveProfile();
+    renderAll();
+    toast('Your taste profile was reset.');
+  });
+
+  /* =========================================================
+     START
+     ========================================================= */
+  async function init() {
+    try {
+      const [me, gamesRes, profRes] = await Promise.all([
+        api('/api/me'), api('/api/games'), api('/api/profile')
+      ]);
+      currentUser = me.user;
+      GAMES = gamesRes.games;
+      byId = Object.fromEntries(GAMES.map(g => [g.id, g]));
+      profile = { ...blank(), ...profRes.profile };
+      if (profile.picked.length > 1) {
+        profile.picked = profile.picked.slice(-1);
+        saveProfile();
+      }
+
+      const first = (currentUser.name || '').split(' ')[0];
+      if (first) $('#foryouTitle').textContent = 'For you today, ' + first;
+      $('#logoutBtn').setAttribute('aria-label', 'Log out ' + currentUser.name);
+
+      buildChips();
+      buildTabs();
+      renderAll();
+      if (location.hash === '#profile-saved') {
+        openProfileTab('saved', { focus: false, updateHash: false });
+      }
+    } catch (e) {
+      if (e.status === 401) return;
+      $('#feed').innerHTML = '<div class="empty"><h3>Couldn\u2019t load your games</h3><p>Make sure the server is running, then refresh the page.</p></div>';
+    }
+  }
+  init();
+})();
+</script>
+</body>
+</html>
